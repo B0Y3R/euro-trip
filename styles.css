@@ -1,0 +1,241 @@
+/* ============================================================
+   Boys Euro Trip — boarding-pass / passport theme
+   Kraft + ink, monospace codes, dashed perforations, stamps.
+   ============================================================ */
+
+:root {
+  --paper: #e9ddc4;
+  --paper-2: #f3ebd8;
+  --card: #fbf7ec;
+  --ink: #1c1813;
+  --ink-soft: #5b5142;
+  --line: #c3b596;
+  --accent: #b5283b;
+  --stamp-green: #2f7d52;
+  --stamp-red: #b5283b;
+  --stamp-gray: #8a7f6c;
+
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --disp: "Archivo", system-ui, sans-serif;
+
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--disp);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(28,24,19,0.06) 1px, transparent 0);
+  background-size: 22px 22px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* paper grain */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+  opacity: 0.35; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+#app { max-width: 1160px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem) 2rem; }
+a { color: inherit; }
+
+/* ---------------------------------------------------------- TOPNAV */
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;
+  padding: 0.6rem clamp(1rem, 4vw, 2.5rem);
+  margin: 0 calc(-1 * clamp(1rem, 4vw, 2.5rem));
+  background: rgba(233,221,196,0.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid var(--ink);
+}
+.topnav__home {
+  font-family: var(--mono); font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.12em; text-decoration: none;
+  padding: 0.3rem 0.7rem; border: 2px solid var(--ink); border-radius: 999px;
+  background: var(--ink); color: var(--paper);
+}
+.topnav__chip {
+  font-family: var(--mono); font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.04em; text-decoration: none; white-space: nowrap;
+  padding: 0.3rem 0.6rem; border: 1.5px solid var(--line); border-radius: 999px;
+  background: var(--card); transition: border-color 0.12s, transform 0.12s;
+}
+.topnav__chip:hover { transform: translateY(-2px); border-color: var(--ink); }
+.topnav__chip.is-active { border-color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent); }
+
+/* ---------------------------------------------------------- HERO */
+.hero { padding: clamp(2.5rem, 7vw, 5rem) 0 clamp(1.5rem, 4vw, 3rem); position: relative; }
+.hero__flag { font-size: clamp(3rem, 9vw, 5rem); line-height: 1; }
+.hero__kicker {
+  font-family: var(--mono); font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; font-size: clamp(0.72rem, 1.6vw, 0.9rem);
+  color: var(--ink-soft); margin: 0 0 0.8rem;
+}
+.hero__title {
+  font-family: var(--disp); font-weight: 800;
+  font-size: clamp(2.6rem, 11vw, 7rem); line-height: 0.92;
+  letter-spacing: -0.01em; text-transform: uppercase; margin: 0;
+}
+.hero--city .hero__title { color: var(--accent); }
+.hero__dates {
+  font-family: var(--mono); font-weight: 700; font-size: clamp(1rem, 3vw, 1.6rem);
+  margin: 0.8rem 0 0; letter-spacing: 0.04em;
+}
+.hero__summary {
+  max-width: 60ch; font-size: clamp(1rem, 2.2vw, 1.25rem); line-height: 1.5;
+  margin: 1.1rem 0 0; font-weight: 500;
+}
+.hero__currency {
+  display: inline-block; margin: 1.1rem 0 0;
+  font-family: var(--mono); font-weight: 700; font-size: 0.82rem;
+  padding: 0.35rem 0.8rem; border: 1.5px dashed var(--line); border-radius: var(--radius);
+  background: var(--paper-2);
+}
+
+/* ---------------------------------------------------------- SECTION */
+.section { padding: clamp(1.6rem, 4vw, 2.6rem) 0 0; }
+.section__title {
+  font-family: var(--mono); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+  margin: 0 0 0.4rem; padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ink); display: flex; align-items: center; gap: 0.5rem;
+}
+.section__hint { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); margin: 0.6rem 0 1.1rem; }
+.section__title + .bp-grid, .section__title + .map, .section__title + .cards,
+.section__title + .timeline, .section__title + .city-grid { margin-top: 1.1rem; }
+
+/* ---------------------------------------------------------- BOARDING PASS */
+.bp-grid {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+.bp {
+  position: relative; background: var(--card);
+  border: 2px solid var(--ink); border-radius: var(--radius);
+  padding: 0.9rem 1rem 1rem; overflow: hidden;
+  box-shadow: 3px 3px 0 rgba(28,24,19,0.18);
+}
+/* ticket notches */
+.bp::before, .bp::after {
+  content: ""; position: absolute; top: 50%; width: 16px; height: 16px;
+  background: var(--paper); border: 2px solid var(--ink); border-radius: 50%;
+  transform: translateY(-50%);
+}
+.bp::before { left: -9px; } .bp::after { right: -9px; }
+.bp__head { display: flex; justify-content: space-between; align-items: center; }
+.bp__brand { font-family: var(--mono); font-weight: 700; font-size: 0.66rem; letter-spacing: 0.2em; color: var(--ink-soft); }
+.bp__mode { font-size: 1.1rem; }
+.bp__route {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  margin: 0.5rem 0 0.2rem;
+}
+.bp__code { font-family: var(--mono); font-weight: 700; font-size: clamp(1.6rem, 5vw, 2.1rem); letter-spacing: 0.02em; }
+.bp__path { flex: 1; text-align: center; font-family: var(--mono); color: var(--accent); font-size: 0.8rem; overflow: hidden; white-space: nowrap; }
+.bp__cities { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); }
+.bp__perf { border-top: 2px dashed var(--line); margin: 0.7rem 0; }
+.bp__foot { display: flex; justify-content: space-between; align-items: center; }
+.bp__date { font-family: var(--mono); font-weight: 700; font-size: 0.85rem; }
+.bp__stamp {
+  font-family: var(--mono); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.06em;
+  padding: 0.25rem 0.55rem; border: 2px solid var(--stamp-gray); color: var(--stamp-gray);
+  border-radius: 5px; transform: rotate(-4deg);
+}
+.bp.is-booked .bp__stamp { border-color: var(--stamp-green); color: var(--stamp-green); }
+.bp.is-todo { border-color: var(--stamp-red); box-shadow: 3px 3px 0 rgba(181,40,59,0.25); }
+.bp.is-todo .bp__stamp { border-color: var(--stamp-red); color: #fff; background: var(--stamp-red); transform: rotate(-5deg) scale(1.05); }
+.bp__note { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.74rem; color: var(--ink-soft); }
+.bp.is-todo .bp__note { color: var(--stamp-red); font-weight: 700; }
+
+/* ---------------------------------------------------------- MAP */
+.map {
+  border: 2px solid var(--ink); border-radius: var(--radius); overflow: hidden;
+  background: var(--paper-2); box-shadow: 3px 3px 0 rgba(28,24,19,0.18);
+}
+.map__canvas { width: 100%; height: clamp(320px, 50vw, 500px); background: var(--paper-2); }
+.map__notice { display: grid; place-items: center; height: clamp(280px, 45vw, 440px); padding: 2rem; text-align: center; font-family: var(--mono); font-weight: 700; }
+.map__notice code { background: var(--ink); color: var(--paper); padding: 0.1rem 0.4rem; border-radius: 4px; }
+.map__legend { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.7rem 0.8rem; border-top: 2px dashed var(--line); background: var(--card); }
+.map__legend-item {
+  text-decoration: none; font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+  padding: 0.25rem 0.55rem; border: 1.5px solid var(--line); border-radius: 999px; background: var(--paper-2);
+  transition: transform 0.12s, border-color 0.12s;
+}
+.map__legend-item:hover { transform: translateY(-2px); border-color: var(--ink); }
+.map__legend-item b {
+  display: inline-grid; place-items: center; width: 1.1rem; height: 1.1rem; margin-right: 0.25rem;
+  background: var(--accent); color: #fff; border-radius: 50%; font-size: 0.62rem;
+}
+
+/* ---------------------------------------------------------- TIMELINE */
+.timeline { display: grid; gap: 0; border: 2px solid var(--ink); border-radius: var(--radius); overflow: hidden; background: var(--card); }
+.tl-row {
+  display: grid; grid-template-columns: 5.5rem 1fr auto; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 0.9rem; text-decoration: none;
+  border-bottom: 1px dashed var(--line); border-left: 5px solid var(--accent);
+  transition: background 0.12s;
+}
+.tl-row:last-child { border-bottom: 0; }
+.tl-row:hover { background: var(--paper-2); }
+.tl-date { font-family: var(--mono); font-weight: 700; font-size: 0.78rem; color: var(--ink-soft); }
+.tl-text { font-weight: 600; font-size: 0.95rem; }
+.tl-flag { font-size: 1.1rem; }
+
+/* ---------------------------------------------------------- CITY GRID */
+.city-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); }
+.city-card {
+  display: flex; flex-direction: column; gap: 0.4rem; text-decoration: none;
+  background: var(--card); border: 2px solid var(--ink); border-radius: var(--radius);
+  padding: 1.1rem; border-top: 8px solid var(--accent);
+  box-shadow: 3px 3px 0 rgba(28,24,19,0.18); transition: transform 0.14s, box-shadow 0.14s;
+}
+.city-card:hover { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 rgba(28,24,19,0.22); }
+.city-card__flag { font-size: 2.2rem; line-height: 1; }
+.city-card__name { font-family: var(--disp); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -0.01em; }
+.city-card__meta { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-soft); }
+.city-card__blurb { font-size: 0.9rem; line-height: 1.4; color: var(--ink-soft); flex: 1; }
+.city-card__go { font-family: var(--mono); font-weight: 700; font-size: 0.78rem; color: var(--accent); }
+
+/* ---------------------------------------------------------- CARDS */
+.cards { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+.card {
+  display: flex; flex-direction: column; gap: 0.5rem; text-decoration: none;
+  background: var(--card); border: 1.5px solid var(--line); border-radius: var(--radius);
+  padding: 1rem; transition: transform 0.12s, border-color 0.12s, box-shadow 0.12s;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--ink); box-shadow: 3px 3px 0 rgba(28,24,19,0.16); }
+.card__top { display: flex; align-items: center; gap: 0.55rem; }
+.card__kind { font-size: 1.2rem; width: 36px; height: 36px; flex: none; display: grid; place-items: center; background: var(--paper-2); border: 1.5px solid var(--line); border-radius: 8px; }
+.card__name { font-weight: 800; font-size: 1.04rem; line-height: 1.15; }
+.card__blurb { font-size: 0.9rem; line-height: 1.42; color: var(--ink-soft); flex: 1; }
+.card__tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.card__tag { font-family: var(--mono); font-size: 0.66rem; font-weight: 700; padding: 0.16rem 0.45rem; border: 1.5px solid var(--line); border-radius: 999px; }
+.card__go { font-family: var(--mono); font-weight: 700; font-size: 0.74rem; color: var(--accent); }
+
+/* ---------------------------------------------------------- PREV / NEXT */
+.prevnext { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+.prevnext__a { font-family: var(--mono); font-weight: 700; font-size: 0.85rem; text-decoration: none; padding: 0.6rem 1rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--card); transition: transform 0.12s; }
+.prevnext__a:hover { transform: translateY(-2px); }
+.prevnext__a--next { margin-left: auto; }
+
+/* ---------------------------------------------------------- FOOTER */
+.footer { text-align: center; padding: clamp(3rem, 8vw, 5rem) 1rem 2rem; }
+.footer__big { font-family: var(--disp); font-weight: 800; font-size: clamp(2rem, 8vw, 4.5rem); text-transform: uppercase; letter-spacing: -0.01em; margin: 0; color: var(--accent); }
+.footer__small { font-family: var(--mono); font-size: 0.82rem; margin: 1rem 0 0; color: var(--ink-soft); }
+
+/* ---------------------------------------------------------- REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); }
+.reveal.in { opacity: 1; transform: none; transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.2,0.8,0.2,1); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; }
+}
