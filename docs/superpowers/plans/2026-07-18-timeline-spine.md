@@ -317,7 +317,10 @@ Insert into `app.js` immediately before the `// ---- Index page` comment:
 
 ```js
   // ---- Timeline spine ---------------------------------------
-  var MODE_ICON = { flight: "✈", ferry: "⛴", train: "🚆", drive: "🚗" };
+  // NOTE: `MODE_ICON` already exists at the top of app.js. Do NOT redeclare it —
+  // `var` permits redeclaration, so a second one silently wins for the whole
+  // scope and changes the train glyph in the existing boardingPass function.
+  // Reuse the existing constant.
 
   function stayById(id) {
     return (TRIP.stays || []).filter(function (s) { return s.id === id; })[0];
