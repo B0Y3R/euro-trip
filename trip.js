@@ -1,5 +1,5 @@
 // ============================================================
-//  Boys Euro Trip — all content. coords.js must load first.
+//  Euro Trip — all content. coords.js must load first.
 //  S(name, key, q) builds a map stop from window.COORDS[key].
 // ============================================================
 
@@ -9,11 +9,11 @@ function S(name, key, q) {
 }
 
 window.TRIP = {
-  title: "BOYS EURO TRIP",
+  title: "EURO TRIP",
   subtitle: "Scandinavia → Southern Spain",
   dateRange: "Sep 4 – 20, 2026",
   summary:
-    "Three guys, seventeen days, nine stops and four day-trips across two continents. " +
+    "Seventeen days, nine stops and four day-trips across two continents. " +
     "Saunas and old towns up north, a night in Morocco, then tapas, flamenco and big nights down south.",
   notionUrl: "https://app.notion.com/p/38c8319b49c180fda446eb82e341333c",
 
@@ -200,7 +200,7 @@ window.TRIP = {
         { title: "Eat", icon: "🍽️", cards: [
           { kind: "coffee", name: "Café Pascal", blurb: "Stockholm's reigning specialty-coffee spot — great pastries and eggs. Lines for a reason.", tags: ["breakfast/fika"], url: "https://www.cafepascal.se/" },
           { kind: "eat", name: "Meatballs for the People", blurb: "SoFo institution — beef, moose, veggie meatballs with lingonberry and mash. The fun group lunch.", tags: ["lunch"], url: "https://www.meatball.se/" },
-          { kind: "eat", name: "AG", blurb: "The boys-trip steakhouse — in-house dry-aging room, 'best ribeye in the country,' legendary burger.", tags: ["★ dinner", "steak"], url: "https://www.restaurangag.se/" },
+          { kind: "eat", name: "AG", blurb: "The steakhouse of the trip — in-house dry-aging room, 'best ribeye in the country,' legendary burger.", tags: ["★ dinner", "steak"], url: "https://www.restaurangag.se/" },
           { kind: "eat", name: "Ekstedt", blurb: "Michelin, everything cooked over open fire — no gas, no electricity. The special-night option.", tags: ["splurge"], url: "https://www.ekstedt.nu/" },
           { kind: "eat", name: "Aifur", blurb: "Viking-themed feast hall in Gamla Stan — mead, horns, live music. Cheesy in the best way.", tags: ["group fun"], url: "https://www.aifur.se/" },
         ] },
@@ -244,7 +244,7 @@ window.TRIP = {
         ] },
         { title: "Eat", icon: "🍽️", cards: [
           { kind: "eat", name: "Kødbyens Fiskebar", blurb: "The Meatpacking District's original star — outstanding seafood and natural wine. The Friday dinner anchor.", tags: ["★ dinner"], query: "Kødbyens Fiskebar Copenhagen" },
-          { kind: "eat", name: "WarPigs", blurb: "Texas BBQ + craft beer (Mikkeller/3 Floyds) on communal tables. Max boys-trip energy, lines the stomach.", tags: ["pre-night"], query: "WarPigs Copenhagen" },
+          { kind: "eat", name: "WarPigs", blurb: "Texas BBQ + craft beer (Mikkeller/3 Floyds) on communal tables. Loud, communal and cheap, and it lines the stomach.", tags: ["pre-night"], query: "WarPigs Copenhagen" },
           { kind: "eat", name: "Torvehallerne", blurb: "Glass-and-steel food market — smørrebrød, coffee, stalls. The do-it-all Saturday lunch.", tags: ["lunch"], query: "Torvehallerne Copenhagen" },
           { kind: "eat", name: "Sankt Peders Bageri", blurb: "The city's oldest bakery (1652) — go for the outsized cinnamon snail. Morning fuel.", tags: ["bakery"], query: "Sankt Peders Bageri Copenhagen" },
         ] },
@@ -487,7 +487,7 @@ window.TRIP = {
           { kind: "eat", name: "La Brunilda", blurb: "The most-recommended modern tapas spot (Arenal) — creative plates, fair prices. Queue at opening.", tags: ["modern"], query: "La Brunilda Sevilla" },
           { kind: "drink", name: "La Terraza del EME", blurb: "Iconic rooftop face-to-face with the cathedral and Giralda. Sunset cocktails, DJ later.", tags: ["★ rooftop"], query: "La Terraza del EME Sevilla" },
           { kind: "drink", name: "Casa de la Memoria", blurb: "The fallback if the Bienal doesn't line up — intimate ticketed flamenco in a 15th-century courtyard, no amplification. Book a week ahead.", tags: ["flamenco", "backup"], query: "Casa de la Memoria Sevilla" },
-          { kind: "drink", name: "La Carbonería", blurb: "Free, casual, beer-in-hand flamenco in a rambling old coal yard — no ticket, no sitting still. Suits a boys trip better than a formal tablao.", tags: ["free", "casual"], query: "La Carbonería Sevilla" },
+          { kind: "drink", name: "La Carbonería", blurb: "Free, casual, beer-in-hand flamenco in a rambling old coal yard — no ticket, no sitting still. More fun than a formal tablao.", tags: ["free", "casual"], query: "La Carbonería Sevilla" },
         ] },
       ],
     },

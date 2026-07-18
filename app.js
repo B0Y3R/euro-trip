@@ -1,5 +1,5 @@
 // ============================================================
-//  app.js — renders the Boys Euro Trip site.
+//  app.js — renders the Euro Trip site.
 //  coords.js + trip.js + config.js load before this.
 //  Page type comes from <body data-page="index|city" data-city="...">.
 // ============================================================
@@ -175,7 +175,7 @@
   function footer() {
     var f = el("footer", "footer");
     f.appendChild(el("p", "footer__big", "WHEELS UP ✈"));
-    var credit = "The boys · Sept 2026";
+    var credit = "The crew · Sept 2026";
     f.appendChild(el("p", "footer__small",
       TRIP.notionUrl ? esc(credit) + ' · <a href="' + TRIP.notionUrl + '" target="_blank" rel="noopener">full plan ↗</a>' : esc(credit)));
     return f;
@@ -430,9 +430,9 @@
     var page = document.body.dataset.page;
     if (page === "city") {
       var city = cityById(document.body.dataset.city);
-      if (city) { document.title = city.name + " · Boys Euro Trip"; buildCity(app, city); }
+      if (city) { document.title = city.name + " · Euro Trip"; buildCity(app, city); }
     } else {
-      document.title = "Boys Euro Trip · Sep 2026";
+      document.title = "Euro Trip · Sep 2026";
       buildIndex(app);
     }
     wireReveals();
