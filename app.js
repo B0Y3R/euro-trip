@@ -181,6 +181,108 @@
     return f;
   }
 
+  // ---- Timeline spine ---------------------------------------
+  var MODE_ICON = { flight: "✈", ferry: "⛴", train: "🚆", drive: "🚗" };
+
+  function stayById(id) {
+    return (TRIP.stays || []).filter(function (s) { return s.id === id; })[0];
+  }
+
+  function stayMeta(stay) {
+    var c = cityById(stay.id);
+    return {
+      flag: stay.flag || (c ? c.flag : "🛏"),
+      name: stay.label || (c ? c.name : stay.id),
+      accent: c ? c.accent : "#8a7f6c"
+    };
+  }
+
+  // Days inside a stay window. `away` marks a night slept elsewhere;
+  // `departure` marks the checkout day.
+  function daysForStay(stay, includeDeparture) {
+    var out = [];
+    TRIP.timeline.forEach(function (d) {
+      if (d.iso < stay.fromIso) return;
+      if (d.iso > stay.toIso) return;
+      var isDeparture = d.iso === stay.toIso;
+      if (isDeparture && !includeDeparture) return;
+      out.push({ day: d, away: !isDeparture && d.sleep !== stay.id, departure: isDeparture });
+    });
+    return out;
+  }
+
+  function bedGlyph(sleep) {
+    if (sleep === "ferry") return "🛏⛴";
+    if (sleep === "plane") return "🛏✈";
+    return "🛏";
+  }
+
+  function legNode(leg) {
+    var n = el("div", "leg-node is-" + leg.status);
+    n.appendChild(el("span", "leg-date", esc(leg.date)));
+    n.appendChild(el("span", "leg-body",
+      (MODE_ICON[leg.mode] || "→") + " " + esc(leg.fromName) + " → " + esc(leg.toName) + " · " + esc(leg.note)));
+    n.appendChild(el("span", "leg-stamp",
+      leg.status === "booked" ? "BOOKED" : leg.status === "todo" ? "TO BOOK" : "TO ARRANGE"));
+    return n;
+  }
+
+  function stayBlock(stay, opts) {
+    opts = opts || {};
+    var m = stayMeta(stay);
+    var box = el("div", "stay");
+    box.style.setProperty("--accent", m.accent);
+
+    var head = el("div", "stay__head");
+    head.appendChild(el("span", "stay__flag", m.flag));
+    head.appendChild(el("span", "stay__name", esc(m.name)));
+    head.appendChild(el("span", "stay__nights", stay.nights + (stay.nights === 1 ? " NIGHT" : " NIGHTS")));
+    box.appendChild(head);
+
+    daysForStay(stay, opts.includeDeparture).forEach(function (entry) {
+      var row = el("div", "day" + (entry.away ? " is-away" : ""));
+      row.appendChild(el("span", "day__date", esc(entry.day.date)));
+      var text = entry.departure ? "Check out · " + entry.day.text : entry.day.text;
+      var cell = el("span", "day__text", esc(text));
+      if (entry.away) {
+        var awayStay = stayById(entry.day.sleep);
+        var awayName = awayStay ? stayMeta(awayStay).name : entry.day.sleep;
+        cell.appendChild(el("span", "day__note", " · away in " + esc(awayName) + ", room held"));
+      }
+      row.appendChild(cell);
+      row.appendChild(el("span", "day__bed", entry.departure ? "→" : bedGlyph(entry.day.sleep)));
+      box.appendChild(row);
+    });
+    return box;
+  }
+
+  // opts.stayId omitted -> whole trip. Provided -> that stay plus its
+  // arrival and departure legs.
+  function timelineSpine(opts) {
+    opts = opts || {};
+    var wrap = el("div", "spine");
+
+    if (opts.stayId) {
+      var stay = stayById(opts.stayId);
+      if (!stay) return wrap;
+      TRIP.legs.forEach(function (l) { if (l.iso === stay.fromIso) wrap.appendChild(legNode(l)); });
+      wrap.appendChild(stayBlock(stay, { includeDeparture: true }));
+      TRIP.legs.forEach(function (l) { if (l.iso === stay.toIso) wrap.appendChild(legNode(l)); });
+      return wrap;
+    }
+
+    var used = {};
+    (TRIP.stays || []).forEach(function (stay) {
+      if (stay.withinStay) return;
+      TRIP.legs.forEach(function (l, i) {
+        if (!used[i] && l.iso === stay.fromIso) { used[i] = 1; wrap.appendChild(legNode(l)); }
+      });
+      wrap.appendChild(stayBlock(stay));
+    });
+    TRIP.legs.forEach(function (l, i) { if (!used[i]) wrap.appendChild(legNode(l)); });
+    return wrap;
+  }
+
   // ---- Index page -------------------------------------------
   function buildIndex(app) {
     app.appendChild(topnav(null));
