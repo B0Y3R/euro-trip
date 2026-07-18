@@ -182,7 +182,6 @@
   }
 
   // ---- Timeline spine ---------------------------------------
-  var MODE_ICON = { flight: "✈", ferry: "⛴", train: "🚆", drive: "🚗" };
 
   function stayById(id) {
     return (TRIP.stays || []).filter(function (s) { return s.id === id; })[0];
