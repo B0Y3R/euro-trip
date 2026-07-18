@@ -164,10 +164,21 @@
       '<span class="bp__path">┄┄┄ ' + (MODE_ICON[leg.mode] || "•") + " ┄┄┄▸</span>" +
       '<span class="bp__code">' + esc(leg.to) + "</span>"));
     bp.appendChild(el("div", "bp__cities", esc(leg.fromName) + " → " + esc(leg.toName)));
+    // Times are local to each airport. A red-eye landing the next day says so,
+    // otherwise "22:50 → 14:00" reads as a 15-hour flight.
+    if (leg.depart && leg.arrive) {
+      bp.appendChild(el("div", "bp__times",
+        '<span class="bp__time">' + esc(leg.depart) + "</span>" +
+        '<span class="bp__dur">' + esc(leg.duration || "") + "</span>" +
+        '<span class="bp__time">' + esc(leg.arrive) +
+          (leg.arriveNextDay ? '<sup class="bp__plus">+1</sup>' : "") + "</span>"));
+    }
     bp.appendChild(el("div", "bp__perf"));
     bp.appendChild(el("div", "bp__foot",
-      '<span class="bp__date">' + esc(leg.date) + "</span>" +
+      '<span class="bp__date">' + esc(leg.date) +
+        (leg.flightNo ? ' <span class="bp__flightno">' + esc(leg.flightNo) + "</span>" : "") + "</span>" +
       '<span class="bp__stamp">' + st.label + "</span>"));
+    if (leg.operator) bp.appendChild(el("div", "bp__note", "Operated by " + esc(leg.operator)));
     if (leg.note) bp.appendChild(el("div", "bp__note", esc(leg.note)));
     return bp;
   }
@@ -219,8 +230,12 @@
   function legNode(leg) {
     var n = el("div", "leg-node is-" + leg.status);
     n.appendChild(el("span", "leg-date", esc(leg.date)));
+    var times = leg.depart && leg.arrive
+      ? " · " + leg.depart + "→" + leg.arrive + (leg.arriveNextDay ? "+1" : "")
+      : "";
     n.appendChild(el("span", "leg-body",
-      (MODE_ICON[leg.mode] || "→") + " " + esc(leg.fromName) + " → " + esc(leg.toName) + " · " + esc(leg.note)));
+      (MODE_ICON[leg.mode] || "→") + " " + esc(leg.fromName) + " → " + esc(leg.toName) +
+      esc(times) + " · " + esc(leg.note)));
     n.appendChild(el("span", "leg-stamp",
       leg.status === "booked" ? "BOOKED" : leg.status === "todo" ? "TO BOOK" : "TO ARRANGE"));
     return n;

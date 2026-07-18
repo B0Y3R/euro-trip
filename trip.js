@@ -20,23 +20,29 @@ window.TRIP = {
   // Boarding passes — the inter-city legs.
   // status: "booked" (✓), "todo" (needs booking), "plan" (to arrange)
   legs: [
-    { date: "Sep 4", iso: "2026-09-04", from: "NYC", to: "HEL", fromName: "New York", toName: "Helsinki", mode: "flight", status: "booked", note: "Red-eye out" },
+    { date: "Sep 4", iso: "2026-09-04", from: "NYC", to: "HEL", fromName: "New York", toName: "Helsinki", mode: "flight", status: "booked",
+      flightNo: "BA6052", operator: "Finnair", depart: "22:50", arrive: "14:00", arriveNextDay: true, duration: "8h 10m",
+      note: "Red-eye out — lands mid-afternoon, not morning" },
     { date: "Sep 6", iso: "2026-09-06", from: "HEL", to: "TLL", fromName: "Helsinki", toName: "Tallinn", mode: "ferry", status: "plan", note: "~2h across the gulf — Tallink / Eckerö / Viking" },
     { date: "Sep 8", iso: "2026-09-08", from: "TLL", to: "STO", fromName: "Tallinn", toName: "Stockholm", mode: "ferry", status: "todo", note: "Overnight Baltic Queen — sails alternate nights, CONFIRM 9/8" },
     { date: "Sep 10", iso: "2026-09-10", from: "STO", to: "CPH", fromName: "Stockholm", toName: "Copenhagen", mode: "flight", status: "todo", note: "Evening flight from Arlanda (~1h) — still to book" },
-    { date: "Sep 12", iso: "2026-09-12", from: "CPH", to: "AGP", fromName: "Copenhagen", toName: "Málaga", mode: "flight", status: "booked", note: "Night flight south, lands ~midnight" },
+    { date: "Sep 12", iso: "2026-09-12", from: "CPH", to: "AGP", fromName: "Copenhagen", toName: "Málaga", mode: "flight", status: "booked",
+      flightNo: "D85075", operator: "Norwegian", depart: "20:15", arrive: "23:55", duration: "3h 40m",
+      note: "Night flight south — straight to the airport hotel" },
     { date: "Sep 14", iso: "2026-09-14", from: "AGP", to: "TAR", fromName: "Málaga", toName: "Tarifa", mode: "drive", status: "plan", note: "Rental car ~2h15 — Gibraltar optional en route" },
     { date: "Sep 15", iso: "2026-09-15", from: "TAR", to: "TNG", fromName: "Tarifa", toName: "Tangier", mode: "ferry", status: "todo", note: "Fast ferry ~1h to Tanger Ville — overnight in Morocco" },
     { date: "Sep 16", iso: "2026-09-16", from: "TNG", to: "TAR", fromName: "Tangier", toName: "Tarifa", mode: "ferry", status: "todo", note: "Morning ferry back" },
     { date: "Sep 17", iso: "2026-09-17", from: "TAR", to: "SVQ", fromName: "Tarifa", toName: "Seville", mode: "drive", status: "plan", note: "Via Cádiz — adds only ~10 min. Drop the car at Santa Justa" },
     { date: "Sep 19", iso: "2026-09-19", from: "SVQ", to: "MAD", fromName: "Seville", toName: "Madrid", mode: "train", status: "plan", note: "AVE high-speed, ~2.5h" },
-    { date: "Sep 20", iso: "2026-09-20", from: "MAD", to: "NYC", fromName: "Madrid", toName: "New York", mode: "flight", status: "booked", note: "Fly home" },
+    { date: "Sep 20", iso: "2026-09-20", from: "MAD", to: "NYC", fromName: "Madrid", toName: "New York", mode: "flight", status: "booked",
+      flightNo: "UX91", operator: "Air Europa", depart: "15:35", arrive: "17:45", duration: "8h 10m",
+      note: "Leave the city by ~13:00 for a 15:35 departure" },
   ],
 
   // Day-by-day overview (shown on the home page).
   timeline: [
     { date: "Fri 9/4",  iso: "2026-09-04", sleep: "plane",      text: "Fly to Helsinki (red-eye)", city: "helsinki" },
-    { date: "Sat 9/5",  iso: "2026-09-05", sleep: "helsinki",   text: "Helsinki — land early, one big day", city: "helsinki" },
+    { date: "Sat 9/5",  iso: "2026-09-05", sleep: "helsinki",   text: "Land 14:00 — half a day in Helsinki", city: "helsinki" },
     { date: "Sun 9/6",  iso: "2026-09-06", sleep: "tallinn",    text: "Ferry → Tallinn", city: "tallinn" },
     { date: "Mon 9/7",  iso: "2026-09-07", sleep: "tallinn",    text: "Tallinn — full day", city: "tallinn" },
     { date: "Tue 9/8",  iso: "2026-09-08", sleep: "ferry",      text: "Tallinn → overnight ferry to Stockholm", city: "tallinn" },
@@ -78,7 +84,7 @@ window.TRIP = {
       id: "helsinki", flag: "🇫🇮", name: "Helsinki", country: "Finland",
       code: "HEL", dates: "Sep 5–6", nights: 1, accent: "#2e6f95",
       currency: "€ euro · €1 ≈ $1.14",
-      blurb: "One day, one night, straight off the red-eye. Löyly is the non-negotiable — waterfront sauna, plunge into the Baltic, drinks on the deck — then the walkable core before the morning ferry to Tallinn.",
+      blurb: "You land at 14:00, so this is half a day, not a full one — in the city by about 15:30. Löyly is the non-negotiable: waterfront sauna, plunge into the Baltic, drinks on the deck. Book a slot in advance or it gets squeezed out.",
       map: { stops: [
         S("Helsinki Cathedral", "hel_cathedral"),
         S("Temppeliaukio (Rock Church)", "hel_rockchurch", "Temppeliaukio Church Helsinki"),

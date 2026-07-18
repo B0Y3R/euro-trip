@@ -284,3 +284,19 @@ a { color: inherit; }
 @media (max-width: 640px) {
   .day { grid-template-columns: 4.2rem 1fr auto; }
 }
+
+/* ---------------------------------------------------------- FLIGHT TIMES */
+.bp__times {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem;
+  margin-top: 0.5rem; font-family: var(--mono);
+}
+.bp__time { font-weight: 700; font-size: 1.15rem; letter-spacing: 0.02em; }
+.bp__plus { font-size: 0.6rem; font-weight: 700; color: var(--accent); margin-left: 1px; }
+.bp__dur {
+  flex: 1; text-align: center; font-size: 0.68rem; letter-spacing: 0.1em;
+  color: var(--ink-soft); white-space: nowrap;
+}
+.bp__flightno {
+  font-family: var(--mono); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--ink-soft); border: 2px solid var(--line); border-radius: 3px; padding: 0 0.3rem;
+}
