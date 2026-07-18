@@ -305,7 +305,7 @@
     // boarding passes
     var legSec = el("section", "section reveal");
     legSec.appendChild(el("h2", "section__title", "✈ The Route"));
-    legSec.appendChild(el("p", "section__hint", "Eight legs, two continents. Stamps show what's booked."));
+    legSec.appendChild(el("p", "section__hint", "Eleven legs, two continents. Stamps show what's booked."));
     var bpGrid = el("div", "bp-grid");
     TRIP.legs.forEach(function (leg) { bpGrid.appendChild(boardingPass(leg)); });
     legSec.appendChild(bpGrid);
@@ -324,18 +324,8 @@
     // timeline
     var tlSec = el("section", "section reveal");
     tlSec.appendChild(el("h2", "section__title", "📅 Day by Day"));
-    var tl = el("div", "timeline");
-    TRIP.timeline.forEach(function (t) {
-      var row = el("a", "tl-row");
-      row.href = t.city + ".html";
-      var ci = cityById(t.city);
-      if (ci) row.style.setProperty("--accent", ci.accent);
-      row.appendChild(el("span", "tl-date", esc(t.date)));
-      row.appendChild(el("span", "tl-text", esc(t.text)));
-      row.appendChild(el("span", "tl-flag", ci ? ci.flag : ""));
-      tl.appendChild(row);
-    });
-    tlSec.appendChild(tl);
+    tlSec.appendChild(el("p", "section__hint", "Blocks are stays, sized by nights. Dots are travel days."));
+    tlSec.appendChild(timelineSpine());
     app.appendChild(tlSec);
 
     // city grid
