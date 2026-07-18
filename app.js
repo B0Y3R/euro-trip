@@ -241,7 +241,15 @@
     daysForStay(stay, opts.includeDeparture).forEach(function (entry) {
       var row = el("div", "day" + (entry.away ? " is-away" : ""));
       row.appendChild(el("span", "day__date", esc(entry.day.date)));
-      var text = entry.departure ? "Check out · " + entry.day.text : entry.day.text;
+      var override = null;
+      if (opts.stayId) {
+        var oc = cityById(opts.stayId);
+        if (oc && oc.days) {
+          oc.days.forEach(function (o) { if (o.iso === entry.day.iso) override = o.text; });
+        }
+      }
+      var base = override || entry.day.text;
+      var text = entry.departure ? "Check out · " + base : base;
       var cell = el("span", "day__text", esc(text));
       if (entry.away) {
         var awayStay = stayById(entry.day.sleep);
@@ -265,7 +273,7 @@
       var stay = stayById(opts.stayId);
       if (!stay) return wrap;
       TRIP.legs.forEach(function (l) { if (l.iso === stay.fromIso) wrap.appendChild(legNode(l)); });
-      wrap.appendChild(stayBlock(stay, { includeDeparture: true }));
+      wrap.appendChild(stayBlock(stay, { includeDeparture: true, stayId: opts.stayId }));
       TRIP.legs.forEach(function (l) { if (l.iso === stay.toIso) wrap.appendChild(legNode(l)); });
       return wrap;
     }

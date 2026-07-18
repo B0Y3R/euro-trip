@@ -310,6 +310,12 @@ window.TRIP = {
       code: "TAR", dates: "Sep 14–17", nights: 3, accent: "#3f8e76",
       currency: "€ euro · €1 ≈ $1.14",
       blurb: "Windswept kitesurf town at the tip of Spain where the Atlantic meets the Med — the base for Tangier and Cádiz. Three continuous nights booked, so the car and the big bags stay put while you cross to Morocco.",
+      days: [
+        { iso: "2026-09-14", text: "Drive down from Málaga (~2h15), drop bags, Gibraltar optional" },
+        { iso: "2026-09-15", text: "Early fast ferry to Tangier — overnight in Morocco" },
+        { iso: "2026-09-16", text: "Ferry back in the morning, then Bolonia beach + Baelo Claudia" },
+        { iso: "2026-09-17", text: "Drive to Seville via Cádiz, drop the car at Santa Justa" },
+      ],
       map: { stops: [
         S("Tarifa old town", "tar_oldtown", "Tarifa Cádiz Spain"),
         S("Castillo de Guzmán el Bueno", "tar_castillo", "Castillo de Guzman el Bueno Tarifa"),
