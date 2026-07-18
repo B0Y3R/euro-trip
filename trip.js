@@ -368,6 +368,10 @@ window.TRIP = {
       code: "TNG", dates: "Sep 15–16", nights: 1, accent: "#c96a2b",
       currency: "MAD dirham · 10 MAD ≈ $1",
       blurb: "One night in Africa, an hour from Spain. Medina alleys and Kasbah walls by day, mint tea on the cliff at Café Hafa at sunset — the Tangier of Bowles, Burroughs and Matisse, compressed into 24 hours.",
+      days: [
+        { iso: "2026-09-15", text: "Early fast ferry over — the medina, the kasbah, mint tea at Café Hafa" },
+        { iso: "2026-09-16", text: "Morning ferry back to Tarifa" },
+      ],
       map: { stops: [
         S("Tangier Medina", "tng_medina", "Tangier Medina"),
         S("Kasbah", "tng_kasbah", "Kasbah Tangier"),

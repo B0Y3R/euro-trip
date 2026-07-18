@@ -241,6 +241,9 @@
     daysForStay(stay, opts.includeDeparture).forEach(function (entry) {
       var row = el("div", "day" + (entry.away ? " is-away" : ""));
       row.appendChild(el("span", "day__date", esc(entry.day.date)));
+      // Overrides are per-city only. The trip-wide branch of timelineSpine must
+      // never pass stayId - if it does, authored city text leaks onto the index
+      // and the overview silently drifts from the master timeline.
       var override = null;
       if (opts.stayId) {
         var oc = cityById(opts.stayId);
@@ -279,12 +282,18 @@
     }
 
     var used = {};
-    (TRIP.stays || []).forEach(function (stay) {
-      if (stay.withinStay) return;
+    var topLevel = (TRIP.stays || []).filter(function (s) { return !s.withinStay; });
+    topLevel.forEach(function (stay, si) {
       TRIP.legs.forEach(function (l, i) {
         if (!used[i] && l.iso === stay.fromIso) { used[i] = 1; wrap.appendChild(legNode(l)); }
       });
-      wrap.appendChild(stayBlock(stay));
+      // A stay's checkout day is normally covered by the next stay's first day.
+      // The last stay has no successor, so it must render its own or the trip's
+      // final day disappears entirely.
+      var next = topLevel[si + 1];
+      // stayId deliberately not passed here: this is the trip-wide branch, and
+      // per-city days[] overrides must never leak onto the index.
+      wrap.appendChild(stayBlock(stay, { includeDeparture: !next || next.fromIso !== stay.toIso }));
       // Legs falling inside this stay's window - the Tangier round trip sits
       // inside Tarifa's. Without this they miss every fromIso match and get
       // swept into the trailing loop, rendering after the last stay.

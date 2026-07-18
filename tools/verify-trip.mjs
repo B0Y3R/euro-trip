@@ -52,6 +52,19 @@ T.cities.forEach(function (c) {
   check("city " + c.id + " nights matches stay", c.nights === s.nights, c.nights + " vs " + s.nights);
 });
 
+// Authored day overrides must resolve to a real day inside that city's stay window.
+T.cities.forEach(function (c) {
+  if (!c.days) return;
+  const s = (T.stays || []).filter(function (x) { return x.id === c.id; })[0];
+  check("city " + c.id + " has a stay for its days[]", !!s, "days[] present but no stay");
+  if (!s) return;
+  c.days.forEach(function (d) {
+    check("city " + c.id + " days[] iso " + d.iso + " is a real day", days.has(d.iso), d.iso);
+    check("city " + c.id + " days[] iso " + d.iso + " inside stay window",
+      d.iso >= s.fromIso && d.iso <= s.toIso, s.fromIso + ".." + s.toIso);
+  });
+});
+
 if (fails.length) {
   console.error("FAIL (" + fails.length + ")");
   fails.forEach(function (f) { console.error("  - " + f); });
