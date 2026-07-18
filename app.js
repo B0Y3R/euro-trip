@@ -181,6 +181,133 @@
     return f;
   }
 
+  // ---- Timeline spine ---------------------------------------
+
+  function stayById(id) {
+    return (TRIP.stays || []).filter(function (s) { return s.id === id; })[0];
+  }
+
+  function stayMeta(stay) {
+    var c = cityById(stay.id);
+    return {
+      flag: stay.flag || (c ? c.flag : "🛏"),
+      name: stay.label || (c ? c.name : stay.id),
+      accent: c ? c.accent : "#8a7f6c"
+    };
+  }
+
+  // Days inside a stay window. `away` marks a night slept elsewhere;
+  // `departure` marks the checkout day.
+  function daysForStay(stay, includeDeparture) {
+    var out = [];
+    TRIP.timeline.forEach(function (d) {
+      if (d.iso < stay.fromIso) return;
+      if (d.iso > stay.toIso) return;
+      var isDeparture = d.iso === stay.toIso;
+      if (isDeparture && !includeDeparture) return;
+      out.push({ day: d, away: !isDeparture && d.sleep !== stay.id, departure: isDeparture });
+    });
+    return out;
+  }
+
+  function bedGlyph(sleep) {
+    if (sleep === "ferry") return "🛏⛴";
+    if (sleep === "plane") return "🛏✈";
+    return "🛏";
+  }
+
+  function legNode(leg) {
+    var n = el("div", "leg-node is-" + leg.status);
+    n.appendChild(el("span", "leg-date", esc(leg.date)));
+    n.appendChild(el("span", "leg-body",
+      (MODE_ICON[leg.mode] || "→") + " " + esc(leg.fromName) + " → " + esc(leg.toName) + " · " + esc(leg.note)));
+    n.appendChild(el("span", "leg-stamp",
+      leg.status === "booked" ? "BOOKED" : leg.status === "todo" ? "TO BOOK" : "TO ARRANGE"));
+    return n;
+  }
+
+  function stayBlock(stay, opts) {
+    opts = opts || {};
+    var m = stayMeta(stay);
+    var box = el("div", "stay");
+    box.style.setProperty("--accent", m.accent);
+
+    var head = el("div", "stay__head");
+    head.appendChild(el("span", "stay__flag", m.flag));
+    head.appendChild(el("span", "stay__name", esc(m.name)));
+    head.appendChild(el("span", "stay__nights", stay.nights + (stay.nights === 1 ? " NIGHT" : " NIGHTS")));
+    box.appendChild(head);
+
+    daysForStay(stay, opts.includeDeparture).forEach(function (entry) {
+      var row = el("div", "day" + (entry.away ? " is-away" : ""));
+      row.appendChild(el("span", "day__date", esc(entry.day.date)));
+      // Overrides are per-city only. The trip-wide branch of timelineSpine must
+      // never pass stayId - if it does, authored city text leaks onto the index
+      // and the overview silently drifts from the master timeline.
+      var override = null;
+      if (opts.stayId) {
+        var oc = cityById(opts.stayId);
+        if (oc && oc.days) {
+          oc.days.forEach(function (o) { if (o.iso === entry.day.iso) override = o.text; });
+        }
+      }
+      var base = override || entry.day.text;
+      var text = entry.departure ? "Check out · " + base : base;
+      var cell = el("span", "day__text", esc(text));
+      if (entry.away) {
+        var awayStay = stayById(entry.day.sleep);
+        var awayName = awayStay ? stayMeta(awayStay).name : entry.day.sleep;
+        cell.appendChild(el("span", "day__note", " · away in " + esc(awayName) + ", room held"));
+      }
+      row.appendChild(cell);
+      row.appendChild(el("span", "day__bed", entry.departure ? "→" : bedGlyph(entry.day.sleep)));
+      box.appendChild(row);
+    });
+    return box;
+  }
+
+  // opts.stayId omitted -> whole trip. Provided -> that stay plus its
+  // arrival and departure legs.
+  function timelineSpine(opts) {
+    opts = opts || {};
+    var wrap = el("div", "spine");
+
+    if (opts.stayId) {
+      var stay = stayById(opts.stayId);
+      if (!stay) return wrap;
+      TRIP.legs.forEach(function (l) { if (l.iso === stay.fromIso) wrap.appendChild(legNode(l)); });
+      wrap.appendChild(stayBlock(stay, { includeDeparture: true, stayId: opts.stayId }));
+      TRIP.legs.forEach(function (l) { if (l.iso === stay.toIso) wrap.appendChild(legNode(l)); });
+      return wrap;
+    }
+
+    var used = {};
+    var topLevel = (TRIP.stays || []).filter(function (s) { return !s.withinStay; });
+    topLevel.forEach(function (stay, si) {
+      TRIP.legs.forEach(function (l, i) {
+        if (!used[i] && l.iso === stay.fromIso) { used[i] = 1; wrap.appendChild(legNode(l)); }
+      });
+      // A stay's checkout day is normally covered by the next stay's first day.
+      // The last stay has no successor, so it must render its own or the trip's
+      // final day disappears entirely.
+      var next = topLevel[si + 1];
+      // stayId deliberately not passed here: this is the trip-wide branch, and
+      // per-city days[] overrides must never leak onto the index.
+      wrap.appendChild(stayBlock(stay, { includeDeparture: !next || next.fromIso !== stay.toIso }));
+      // Legs falling inside this stay's window - the Tangier round trip sits
+      // inside Tarifa's. Without this they miss every fromIso match and get
+      // swept into the trailing loop, rendering after the last stay.
+      TRIP.legs.forEach(function (l, i) {
+        if (!used[i] && l.iso > stay.fromIso && l.iso < stay.toIso) {
+          used[i] = 1;
+          wrap.appendChild(legNode(l));
+        }
+      });
+    });
+    TRIP.legs.forEach(function (l, i) { if (!used[i]) wrap.appendChild(legNode(l)); });
+    return wrap;
+  }
+
   // ---- Index page -------------------------------------------
   function buildIndex(app) {
     app.appendChild(topnav(null));
@@ -195,7 +322,7 @@
     // boarding passes
     var legSec = el("section", "section reveal");
     legSec.appendChild(el("h2", "section__title", "✈ The Route"));
-    legSec.appendChild(el("p", "section__hint", "Eight legs, two continents. Stamps show what's booked."));
+    legSec.appendChild(el("p", "section__hint", "Eleven legs, two continents. Stamps show what's booked."));
     var bpGrid = el("div", "bp-grid");
     TRIP.legs.forEach(function (leg) { bpGrid.appendChild(boardingPass(leg)); });
     legSec.appendChild(bpGrid);
@@ -214,18 +341,8 @@
     // timeline
     var tlSec = el("section", "section reveal");
     tlSec.appendChild(el("h2", "section__title", "📅 Day by Day"));
-    var tl = el("div", "timeline");
-    TRIP.timeline.forEach(function (t) {
-      var row = el("a", "tl-row");
-      row.href = t.city + ".html";
-      var ci = cityById(t.city);
-      if (ci) row.style.setProperty("--accent", ci.accent);
-      row.appendChild(el("span", "tl-date", esc(t.date)));
-      row.appendChild(el("span", "tl-text", esc(t.text)));
-      row.appendChild(el("span", "tl-flag", ci ? ci.flag : ""));
-      tl.appendChild(row);
-    });
-    tlSec.appendChild(tl);
+    tlSec.appendChild(el("p", "section__hint", "Blocks are stays, sized by nights. Dots are travel days."));
+    tlSec.appendChild(timelineSpine());
     app.appendChild(tlSec);
 
     // city grid
@@ -262,6 +379,15 @@
     hero.appendChild(el("p", "hero__summary", esc(city.blurb)));
     hero.appendChild(el("p", "hero__currency", "💱 " + esc(city.currency)));
     app.appendChild(hero);
+
+    // Day-by-day for this stay. Cities with no stay (Gibraltar is a day trip,
+    // nights: 0) get no section rather than an empty one.
+    if (stayById(city.id)) {
+      var citySec = el("section", "section reveal");
+      citySec.appendChild(el("h2", "section__title", "📅 Your Days Here"));
+      citySec.appendChild(timelineSpine({ stayId: city.id }));
+      app.appendChild(citySec);
+    }
 
     // map
     var mapSec = el("section", "section reveal");

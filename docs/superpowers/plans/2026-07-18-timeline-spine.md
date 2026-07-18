@@ -317,7 +317,10 @@ Insert into `app.js` immediately before the `// ---- Index page` comment:
 
 ```js
   // ---- Timeline spine ---------------------------------------
-  var MODE_ICON = { flight: "✈", ferry: "⛴", train: "🚆", drive: "🚗" };
+  // NOTE: `MODE_ICON` already exists at the top of app.js. Do NOT redeclare it —
+  // `var` permits redeclaration, so a second one silently wins for the whole
+  // scope and changes the train glyph in the existing boardingPass function.
+  // Reuse the existing constant.
 
   function stayById(id) {
     return (TRIP.stays || []).filter(function (s) { return s.id === id; })[0];
@@ -413,6 +416,15 @@ Insert into `app.js` immediately before the `// ---- Index page` comment:
         if (!used[i] && l.iso === stay.fromIso) { used[i] = 1; wrap.appendChild(legNode(l)); }
       });
       wrap.appendChild(stayBlock(stay));
+      // Legs falling inside this stay's window - the Tangier round trip sits
+      // inside Tarifa's. Without this they miss every fromIso match and get
+      // swept into the trailing loop, rendering after the last stay.
+      TRIP.legs.forEach(function (l, i) {
+        if (!used[i] && l.iso > stay.fromIso && l.iso < stay.toIso) {
+          used[i] = 1;
+          wrap.appendChild(legNode(l));
+        }
+      });
     });
     TRIP.legs.forEach(function (l, i) { if (!used[i]) wrap.appendChild(legNode(l)); });
     return wrap;

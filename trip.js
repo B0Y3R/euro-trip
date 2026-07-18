@@ -20,38 +20,56 @@ window.TRIP = {
   // Boarding passes — the inter-city legs.
   // status: "booked" (✓), "todo" (needs booking), "plan" (to arrange)
   legs: [
-    { date: "Sep 4", from: "NYC", to: "HEL", fromName: "New York", toName: "Helsinki", mode: "flight", status: "booked", note: "Red-eye out" },
-    { date: "Sep 6", from: "HEL", to: "TLL", fromName: "Helsinki", toName: "Tallinn", mode: "ferry", status: "plan", note: "~2h across the gulf — Tallink / Eckerö / Viking" },
-    { date: "Sep 8", from: "TLL", to: "STO", fromName: "Tallinn", toName: "Stockholm", mode: "ferry", status: "todo", note: "Overnight Baltic Queen — sails alternate nights, CONFIRM 9/8" },
-    { date: "Sep 10", from: "STO", to: "CPH", fromName: "Stockholm", toName: "Copenhagen", mode: "flight", status: "todo", note: "Evening flight from Arlanda (~1h) — still to book" },
-    { date: "Sep 12", from: "CPH", to: "AGP", fromName: "Copenhagen", toName: "Málaga", mode: "flight", status: "booked", note: "Night flight south, lands ~midnight" },
-    { date: "Sep 14", from: "AGP", to: "TAR", fromName: "Málaga", toName: "Tarifa", mode: "drive", status: "plan", note: "Rental car ~2h15 — Gibraltar optional en route" },
-    { date: "Sep 15", from: "TAR", to: "TNG", fromName: "Tarifa", toName: "Tangier", mode: "ferry", status: "todo", note: "Fast ferry ~1h to Tanger Ville — overnight in Morocco" },
-    { date: "Sep 16", from: "TNG", to: "TAR", fromName: "Tangier", toName: "Tarifa", mode: "ferry", status: "todo", note: "Morning ferry back" },
-    { date: "Sep 17", from: "TAR", to: "SVQ", fromName: "Tarifa", toName: "Seville", mode: "drive", status: "plan", note: "Via Cádiz — adds only ~10 min. Drop the car at Santa Justa" },
-    { date: "Sep 19", from: "SVQ", to: "MAD", fromName: "Seville", toName: "Madrid", mode: "train", status: "plan", note: "AVE high-speed, ~2.5h" },
-    { date: "Sep 20", from: "MAD", to: "NYC", fromName: "Madrid", toName: "New York", mode: "flight", status: "booked", note: "Fly home" },
+    { date: "Sep 4", iso: "2026-09-04", from: "NYC", to: "HEL", fromName: "New York", toName: "Helsinki", mode: "flight", status: "booked", note: "Red-eye out" },
+    { date: "Sep 6", iso: "2026-09-06", from: "HEL", to: "TLL", fromName: "Helsinki", toName: "Tallinn", mode: "ferry", status: "plan", note: "~2h across the gulf — Tallink / Eckerö / Viking" },
+    { date: "Sep 8", iso: "2026-09-08", from: "TLL", to: "STO", fromName: "Tallinn", toName: "Stockholm", mode: "ferry", status: "todo", note: "Overnight Baltic Queen — sails alternate nights, CONFIRM 9/8" },
+    { date: "Sep 10", iso: "2026-09-10", from: "STO", to: "CPH", fromName: "Stockholm", toName: "Copenhagen", mode: "flight", status: "todo", note: "Evening flight from Arlanda (~1h) — still to book" },
+    { date: "Sep 12", iso: "2026-09-12", from: "CPH", to: "AGP", fromName: "Copenhagen", toName: "Málaga", mode: "flight", status: "booked", note: "Night flight south, lands ~midnight" },
+    { date: "Sep 14", iso: "2026-09-14", from: "AGP", to: "TAR", fromName: "Málaga", toName: "Tarifa", mode: "drive", status: "plan", note: "Rental car ~2h15 — Gibraltar optional en route" },
+    { date: "Sep 15", iso: "2026-09-15", from: "TAR", to: "TNG", fromName: "Tarifa", toName: "Tangier", mode: "ferry", status: "todo", note: "Fast ferry ~1h to Tanger Ville — overnight in Morocco" },
+    { date: "Sep 16", iso: "2026-09-16", from: "TNG", to: "TAR", fromName: "Tangier", toName: "Tarifa", mode: "ferry", status: "todo", note: "Morning ferry back" },
+    { date: "Sep 17", iso: "2026-09-17", from: "TAR", to: "SVQ", fromName: "Tarifa", toName: "Seville", mode: "drive", status: "plan", note: "Via Cádiz — adds only ~10 min. Drop the car at Santa Justa" },
+    { date: "Sep 19", iso: "2026-09-19", from: "SVQ", to: "MAD", fromName: "Seville", toName: "Madrid", mode: "train", status: "plan", note: "AVE high-speed, ~2.5h" },
+    { date: "Sep 20", iso: "2026-09-20", from: "MAD", to: "NYC", fromName: "Madrid", toName: "New York", mode: "flight", status: "booked", note: "Fly home" },
   ],
 
   // Day-by-day overview (shown on the home page).
   timeline: [
-    { date: "Fri 9/4", text: "Fly to Helsinki (red-eye)", city: "helsinki" },
-    { date: "Sat 9/5", text: "Helsinki — land early, one big day", city: "helsinki" },
-    { date: "Sun 9/6", text: "Ferry → Tallinn", city: "tallinn" },
-    { date: "Mon 9/7", text: "Tallinn — full day", city: "tallinn" },
-    { date: "Tue 9/8", text: "Tallinn → overnight ferry to Stockholm", city: "tallinn" },
-    { date: "Wed 9/9", text: "Dock ~10am — Stockholm", city: "stockholm" },
-    { date: "Thu 9/10", text: "Stockholm day → night flight to CPH", city: "stockholm" },
-    { date: "Fri 9/11", text: "Copenhagen — full day, big night", city: "copenhagen" },
-    { date: "Sat 9/12", text: "Copenhagen day → night flight to Málaga", city: "copenhagen" },
-    { date: "Sun 9/13", text: "Rental car → Granada day trip (Alhambra)", city: "malaga" },
-    { date: "Mon 9/14", text: "Drive → Tarifa · Gibraltar optional", city: "tarifa" },
-    { date: "Tue 9/15", text: "Ferry → Tangier, overnight in Morocco", city: "tangier" },
-    { date: "Wed 9/16", text: "Ferry back · Bolonia + Baelo Claudia", city: "tarifa" },
-    { date: "Thu 9/17", text: "Drive → Seville via Cádiz, drop the car", city: "seville" },
-    { date: "Fri 9/18", text: "Córdoba day trip (Mezquita)", city: "seville" },
-    { date: "Sat 9/19", text: "Train → Madrid, last big night", city: "madrid" },
-    { date: "Sun 9/20", text: "El Rastro, churros → fly home", city: "madrid" },
+    { date: "Fri 9/4",  iso: "2026-09-04", sleep: "plane",      text: "Fly to Helsinki (red-eye)", city: "helsinki" },
+    { date: "Sat 9/5",  iso: "2026-09-05", sleep: "helsinki",   text: "Helsinki — land early, one big day", city: "helsinki" },
+    { date: "Sun 9/6",  iso: "2026-09-06", sleep: "tallinn",    text: "Ferry → Tallinn", city: "tallinn" },
+    { date: "Mon 9/7",  iso: "2026-09-07", sleep: "tallinn",    text: "Tallinn — full day", city: "tallinn" },
+    { date: "Tue 9/8",  iso: "2026-09-08", sleep: "ferry",      text: "Tallinn → overnight ferry to Stockholm", city: "tallinn" },
+    { date: "Wed 9/9",  iso: "2026-09-09", sleep: "stockholm",  text: "Dock ~10am — Stockholm", city: "stockholm" },
+    { date: "Thu 9/10", iso: "2026-09-10", sleep: "copenhagen", text: "Stockholm day → night flight to CPH", city: "stockholm" },
+    { date: "Fri 9/11", iso: "2026-09-11", sleep: "copenhagen", text: "Copenhagen — full day, big night", city: "copenhagen" },
+    { date: "Sat 9/12", iso: "2026-09-12", sleep: "malaga",     text: "Copenhagen day → night flight to Málaga", city: "copenhagen" },
+    { date: "Sun 9/13", iso: "2026-09-13", sleep: "malaga",     text: "Rental car → Granada day trip (Alhambra)", city: "malaga" },
+    { date: "Mon 9/14", iso: "2026-09-14", sleep: "tarifa",     text: "Drive → Tarifa · Gibraltar optional", city: "tarifa" },
+    { date: "Tue 9/15", iso: "2026-09-15", sleep: "tangier",    text: "Ferry → Tangier, overnight in Morocco", city: "tangier" },
+    { date: "Wed 9/16", iso: "2026-09-16", sleep: "tarifa",     text: "Ferry back · Bolonia + Baelo Claudia", city: "tarifa" },
+    { date: "Thu 9/17", iso: "2026-09-17", sleep: "seville",    text: "Drive → Seville via Cádiz, drop the car", city: "seville" },
+    { date: "Fri 9/18", iso: "2026-09-18", sleep: "seville",    text: "Córdoba day trip (Mezquita)", city: "seville" },
+    { date: "Sat 9/19", iso: "2026-09-19", sleep: "madrid",     text: "Train → Madrid, last big night", city: "madrid" },
+    { date: "Sun 9/20", iso: "2026-09-20", sleep: null,         text: "El Rastro, churros → fly home", city: "madrid" },
+  ],
+
+  // Continuous blocks of nights. Two are not cities (the red-eye and the Baltic
+  // ferry). Tangier nests inside Tarifa because the Tarifa room is held through
+  // that night — `withinStay` keeps it off the trip-wide view so the night is
+  // not counted twice.
+  stays: [
+    { id: "plane",      nights: 1, fromIso: "2026-09-04", toIso: "2026-09-05", transit: true, label: "Red-eye", flag: "✈️" },
+    { id: "helsinki",   nights: 1, fromIso: "2026-09-05", toIso: "2026-09-06" },
+    { id: "tallinn",    nights: 2, fromIso: "2026-09-06", toIso: "2026-09-08" },
+    { id: "ferry",      nights: 1, fromIso: "2026-09-08", toIso: "2026-09-09", transit: true, label: "Baltic ferry", flag: "⛴" },
+    { id: "stockholm",  nights: 1, fromIso: "2026-09-09", toIso: "2026-09-10" },
+    { id: "copenhagen", nights: 2, fromIso: "2026-09-10", toIso: "2026-09-12" },
+    { id: "malaga",     nights: 2, fromIso: "2026-09-12", toIso: "2026-09-14" },
+    { id: "tarifa",     nights: 3, fromIso: "2026-09-14", toIso: "2026-09-17" },
+    { id: "tangier",    nights: 1, fromIso: "2026-09-15", toIso: "2026-09-16", withinStay: "tarifa" },
+    { id: "seville",    nights: 2, fromIso: "2026-09-17", toIso: "2026-09-19" },
+    { id: "madrid",     nights: 1, fromIso: "2026-09-19", toIso: "2026-09-20" },
   ],
 
   cities: [
@@ -292,6 +310,12 @@ window.TRIP = {
       code: "TAR", dates: "Sep 14–17", nights: 3, accent: "#3f8e76",
       currency: "€ euro · €1 ≈ $1.14",
       blurb: "Windswept kitesurf town at the tip of Spain where the Atlantic meets the Med — the base for Tangier and Cádiz. Three continuous nights booked, so the car and the big bags stay put while you cross to Morocco.",
+      days: [
+        { iso: "2026-09-14", text: "Drive down from Málaga (~2h15), drop bags, Gibraltar optional" },
+        { iso: "2026-09-15", text: "Early fast ferry to Tangier — overnight in Morocco" },
+        { iso: "2026-09-16", text: "Ferry back in the morning, then Bolonia beach + Baelo Claudia" },
+        { iso: "2026-09-17", text: "Drive to Seville via Cádiz, drop the car at Santa Justa" },
+      ],
       map: { stops: [
         S("Tarifa old town", "tar_oldtown", "Tarifa Cádiz Spain"),
         S("Castillo de Guzmán el Bueno", "tar_castillo", "Castillo de Guzman el Bueno Tarifa"),
@@ -344,6 +368,10 @@ window.TRIP = {
       code: "TNG", dates: "Sep 15–16", nights: 1, accent: "#c96a2b",
       currency: "MAD dirham · 10 MAD ≈ $1",
       blurb: "One night in Africa, an hour from Spain. Medina alleys and Kasbah walls by day, mint tea on the cliff at Café Hafa at sunset — the Tangier of Bowles, Burroughs and Matisse, compressed into 24 hours.",
+      days: [
+        { iso: "2026-09-15", text: "Early fast ferry over — the medina, the kasbah, mint tea at Café Hafa" },
+        { iso: "2026-09-16", text: "Morning ferry back to Tarifa" },
+      ],
       map: { stops: [
         S("Tangier Medina", "tng_medina", "Tangier Medina"),
         S("Kasbah", "tng_kasbah", "Kasbah Tangier"),
