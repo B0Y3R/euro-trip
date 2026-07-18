@@ -259,3 +259,25 @@ window.COORDS = {
 window.COORDS.mal_cathedral = { lat: 36.720300, lng: -4.419900 };
 window.COORDS.tng_hercules  = { lat: 35.758800, lng: -5.938500 };
 window.COORDS.city_gibraltar = window.COORDS.city_tarifa;
+
+// --- added for the revised Sept 2026 plan (Tallinn, Tarifa, Granada, AGP, Cadiz) ---
+window.COORDS.city_tallinn     = { lat: 59.437242, lng: 24.757269 };
+window.COORDS.tll_oldtown      = { lat: 59.437354, lng: 24.745211 };
+window.COORDS.tll_toompea      = { lat: 59.435744, lng: 24.737376 };
+window.COORDS.tll_alexander    = { lat: 59.435752, lng: 24.73932 };
+window.COORDS.tll_stolav       = { lat: 59.441322, lng: 24.747896 };
+window.COORDS.tll_kadriorg     = { lat: 59.438466, lng: 24.791025 };
+window.COORDS.tll_telliskivi   = { lat: 59.438929, lng: 24.728729 };
+window.COORDS.tll_fotografiska = { lat: 59.438352, lng: 24.728465 };
+window.COORDS.tll_iglupark     = { lat: 59.453364, lng: 24.733557 };
+window.COORDS.tar_castillo     = { lat: 36.011678, lng: -5.60281 };
+window.COORDS.tar_punta        = { lat: 36.002961, lng: -5.609964 };
+window.COORDS.tar_loslances    = { lat: 36.030025, lng: -5.624059 };
+window.COORDS.tar_bolonia      = { lat: 36.082231, lng: -5.764022 };
+window.COORDS.tar_baelo        = { lat: 36.089608, lng: -5.774547 };
+window.COORDS.city_granada     = { lat: 37.173499, lng: -3.599534 };
+window.COORDS.gra_alhambra     = { lat: 37.176055, lng: -3.58811 };
+window.COORDS.gra_sannicolas   = { lat: 37.181041, lng: -3.592662 };
+window.COORDS.gra_albaicin     = { lat: 37.181569, lng: -3.594667 };
+window.COORDS.agp_airport      = { lat: 36.678545, lng: -4.499955 };
+window.COORDS.cad_oldtown      = { lat: 36.530227, lng: -6.292442 };

@@ -13,19 +13,22 @@ window.TRIP = {
   subtitle: "Scandinavia → Southern Spain",
   dateRange: "Sep 4 – 20, 2026",
   summary:
-    "Three guys, seventeen days, seven cities and two day-trips across two continents. " +
-    "Saunas and design up north, then tapas, flamenco and big nights down south.",
+    "Three guys, seventeen days, nine stops and four day-trips across two continents. " +
+    "Saunas and old towns up north, a night in Morocco, then tapas, flamenco and big nights down south.",
   notionUrl: "https://app.notion.com/p/38c8319b49c180fda446eb82e341333c",
 
   // Boarding passes — the inter-city legs.
   // status: "booked" (✓), "todo" (needs booking), "plan" (to arrange)
   legs: [
     { date: "Sep 4", from: "NYC", to: "HEL", fromName: "New York", toName: "Helsinki", mode: "flight", status: "booked", note: "Red-eye out" },
-    { date: "Sep 8", from: "HEL", to: "STO", fromName: "Helsinki", toName: "Stockholm", mode: "ferry", status: "todo", note: "Overnight Baltic cruise — still to book" },
-    { date: "Sep 11", from: "STO", to: "CPH", fromName: "Stockholm", toName: "Copenhagen", mode: "train", status: "plan", note: "Morning train" },
-    { date: "Sep 12", from: "CPH", to: "AGP", fromName: "Copenhagen", toName: "Málaga", mode: "flight", status: "booked", note: "Night flight south" },
-    { date: "Sep 13", from: "AGP", to: "TAR", fromName: "Málaga", toName: "Tarifa", mode: "drive", status: "plan", note: "Rental car, via Gibraltar" },
-    { date: "Sep 15", from: "TAR", to: "SVQ", fromName: "Tarifa", toName: "Seville", mode: "drive", status: "plan", note: "Drive to Andalusia base" },
+    { date: "Sep 6", from: "HEL", to: "TLL", fromName: "Helsinki", toName: "Tallinn", mode: "ferry", status: "plan", note: "~2h across the gulf — Tallink / Eckerö / Viking" },
+    { date: "Sep 8", from: "TLL", to: "STO", fromName: "Tallinn", toName: "Stockholm", mode: "ferry", status: "todo", note: "Overnight Baltic Queen — sails alternate nights, CONFIRM 9/8" },
+    { date: "Sep 10", from: "STO", to: "CPH", fromName: "Stockholm", toName: "Copenhagen", mode: "flight", status: "todo", note: "Evening flight from Arlanda (~1h) — still to book" },
+    { date: "Sep 12", from: "CPH", to: "AGP", fromName: "Copenhagen", toName: "Málaga", mode: "flight", status: "booked", note: "Night flight south, lands ~midnight" },
+    { date: "Sep 14", from: "AGP", to: "TAR", fromName: "Málaga", toName: "Tarifa", mode: "drive", status: "plan", note: "Rental car ~2h15 — Gibraltar optional en route" },
+    { date: "Sep 15", from: "TAR", to: "TNG", fromName: "Tarifa", toName: "Tangier", mode: "ferry", status: "todo", note: "Fast ferry ~1h to Tanger Ville — overnight in Morocco" },
+    { date: "Sep 16", from: "TNG", to: "TAR", fromName: "Tangier", toName: "Tarifa", mode: "ferry", status: "todo", note: "Morning ferry back" },
+    { date: "Sep 17", from: "TAR", to: "SVQ", fromName: "Tarifa", toName: "Seville", mode: "drive", status: "plan", note: "~2h, drop the car — Cádiz stop optional" },
     { date: "Sep 19", from: "SVQ", to: "MAD", fromName: "Seville", toName: "Madrid", mode: "train", status: "plan", note: "AVE high-speed, ~2.5h" },
     { date: "Sep 20", from: "MAD", to: "NYC", fromName: "Madrid", toName: "New York", mode: "flight", status: "booked", note: "Fly home" },
   ],
@@ -33,19 +36,19 @@ window.TRIP = {
   // Day-by-day overview (shown on the home page).
   timeline: [
     { date: "Fri 9/4", text: "Fly to Helsinki (red-eye)", city: "helsinki" },
-    { date: "Sat 9/5", text: "Helsinki — arrive & sightsee", city: "helsinki" },
-    { date: "Sun 9/6", text: "Helsinki — full day", city: "helsinki" },
-    { date: "Mon 9/7", text: "Tallinn day trip (optional)", city: "helsinki" },
-    { date: "Tue 9/8", text: "Overnight ferry → Stockholm", city: "stockholm" },
-    { date: "Wed 9/9", text: "Stockholm", city: "stockholm" },
-    { date: "Thu 9/10", text: "Stockholm", city: "stockholm" },
-    { date: "Fri 9/11", text: "Train → Copenhagen, big night", city: "copenhagen" },
-    { date: "Sat 9/12", text: "Copenhagen day → night flight", city: "copenhagen" },
-    { date: "Sun 9/13", text: "Málaga AM → Gibraltar → Tarifa", city: "malaga" },
-    { date: "Mon 9/14", text: "Tangier day trip", city: "gibraltar" },
-    { date: "Tue 9/15", text: "Drive → Seville", city: "seville" },
-    { date: "Wed 9/16", text: "Seville — full day", city: "seville" },
-    { date: "Thu 9/17", text: "Granada day trip (Alhambra)", city: "seville" },
+    { date: "Sat 9/5", text: "Helsinki — land early, one big day", city: "helsinki" },
+    { date: "Sun 9/6", text: "Ferry → Tallinn", city: "tallinn" },
+    { date: "Mon 9/7", text: "Tallinn — full day", city: "tallinn" },
+    { date: "Tue 9/8", text: "Tallinn → overnight ferry to Stockholm", city: "tallinn" },
+    { date: "Wed 9/9", text: "Dock ~10am — Stockholm", city: "stockholm" },
+    { date: "Thu 9/10", text: "Stockholm day → night flight to CPH", city: "stockholm" },
+    { date: "Fri 9/11", text: "Copenhagen — full day, big night", city: "copenhagen" },
+    { date: "Sat 9/12", text: "Copenhagen day → night flight to Málaga", city: "copenhagen" },
+    { date: "Sun 9/13", text: "Rental car → Granada day trip (Alhambra)", city: "malaga" },
+    { date: "Mon 9/14", text: "Drive → Tarifa · Gibraltar optional", city: "tarifa" },
+    { date: "Tue 9/15", text: "Ferry → Tangier, overnight in Morocco", city: "tangier" },
+    { date: "Wed 9/16", text: "Ferry back · Tarifa or Cádiz", city: "tarifa" },
+    { date: "Thu 9/17", text: "Drive → Seville, drop the car", city: "seville" },
     { date: "Fri 9/18", text: "Córdoba day trip (Mezquita)", city: "seville" },
     { date: "Sat 9/19", text: "Train → Madrid, last big night", city: "madrid" },
     { date: "Sun 9/20", text: "El Rastro, churros → fly home", city: "madrid" },
@@ -55,9 +58,9 @@ window.TRIP = {
     // ===================================================== HELSINKI
     {
       id: "helsinki", flag: "🇫🇮", name: "Helsinki", country: "Finland",
-      code: "HEL", dates: "Sep 5–7", nights: 3, accent: "#2e6f95",
+      code: "HEL", dates: "Sep 5–6", nights: 1, accent: "#2e6f95",
       currency: "€ euro · €1 ≈ $1.14",
-      blurb: "Off the red-eye into sauna country — waterfront design, a church carved from bedrock, and Baltic saunas before the overnight ferry to Stockholm.",
+      blurb: "One day, one night, straight off the red-eye. Löyly is the non-negotiable — waterfront sauna, plunge into the Baltic, drinks on the deck — then the walkable core before the morning ferry to Tallinn.",
       map: { stops: [
         S("Helsinki Cathedral", "hel_cathedral"),
         S("Temppeliaukio (Rock Church)", "hel_rockchurch", "Temppeliaukio Church Helsinki"),
@@ -70,10 +73,10 @@ window.TRIP = {
       ] },
       sections: [
         { title: "Stay", icon: "🏨", cards: [
-          { kind: "stay", name: "Townhouse w/ Private Sauna (Kamppi)", blurb: "3BR, 3 kings, 2.5 baths, dead-center with its own sauna. The comfortable pick.", tags: ["★ top pick", "sauna", "~$467/nt"], url: "https://www.airbnb.com/rooms/610659813174018066?check_in=2026-09-05&check_out=2026-09-08&adults=3" },
-          { kind: "stay", name: "City Centre Design Apt + Balcony", blurb: "4BR in Kruununhaka, ★4.98. Best-value central 4BR (only 1 bath).", tags: ["best value", "~$335/nt"], url: "https://www.airbnb.com/rooms/30609237?check_in=2026-09-05&check_out=2026-09-08&adults=3" },
-          { kind: "stay", name: "Designer 4BR + Sauna (Kamppi)", blurb: "True 4BR, everyone gets a room, private sauna. Guest Favorite.", tags: ["4BR", "sauna", "~$594/nt"], url: "https://www.airbnb.com/rooms/52359037?check_in=2026-09-05&check_out=2026-09-08&adults=3" },
-          { kind: "stay", name: "Hotel U14 (Autograph)", blurb: "Boutique by the waterfront, voted #1 hotel breakfast in Helsinki.", tags: ["hotel", "~$150–200/nt"], url: "https://hotelu14.fi/" },
+          { kind: "stay", name: "Hotel U14 (Autograph)", blurb: "Boutique in a restored 1914 building by Market Square, on-site sauna, voted #1 hotel breakfast in Helsinki. One night, so take the hotel.", tags: ["★ top pick", "hotel", "~$150–200/nt"], url: "https://hotelu14.fi/" },
+          { kind: "stay", name: "Scandic Helsinki Hub", blurb: "Modern high-rise dead center, 9.0/10 guest scores, walking distance to everything. The reliable pick.", tags: ["hotel", "~$130–160/nt"], url: "https://www.scandichotels.com/en/hotels/scandic-helsinki-hub" },
+          { kind: "stay", name: "Hotel Indigo Helsinki", blurb: "Boutique design hotel on a quiet street, walkable to the Cathedral, Senate Square and the Design District.", tags: ["hotel", "~$160–200/nt"], url: "https://www.ihg.com/hotelindigo/hotels/us/en/helsinki/helnd/hoteldetail" },
+          { kind: "stay", name: "Search Airbnb (1 night, 3 guests)", blurb: "An Airbnb makes less sense for a single night, but the search is here with the right dates if you want to look.", tags: ["airbnb", "1 night"], url: "https://www.airbnb.com/s/Helsinki--Finland/homes?check_in=2026-09-05&check_out=2026-09-06&adults=3" },
         ] },
         { title: "Do", icon: "🗺️", cards: [
           { kind: "sight", name: "Löyly Sauna", blurb: "Award-winning waterfront sauna — three saunas, plunge into the Baltic, drinks on the deck. Book ahead.", tags: ["★ must", "sauna"], url: "https://www.loylyhelsinki.fi/en" },
@@ -99,12 +102,59 @@ window.TRIP = {
       ],
     },
 
+    // ===================================================== TALLINN
+    {
+      id: "tallinn", flag: "🇪🇪", name: "Tallinn", country: "Estonia",
+      code: "TLL", dates: "Sep 6–8", nights: 2, accent: "#5b8c5a",
+      currency: "€ euro · €1 ≈ $1.14",
+      blurb: "Two nights in the best-preserved medieval city in Europe — ferry in from Helsinki Sunday, saunas and craft beer in Kalamaja, then the overnight Baltic Queen out to Stockholm Tuesday night. That sailing is STILL TO BOOK, and the ship runs alternate evenings, so confirm Sept 8 before anything else locks.",
+      map: { stops: [
+        S("Old Town (Raekoja plats)", "tll_oldtown", "Raekoja plats Tallinn"),
+        S("Toompea Castle", "tll_toompea", "Toompea Castle Tallinn"),
+        S("Alexander Nevsky Cathedral", "tll_alexander", "Alexander Nevsky Cathedral Tallinn"),
+        S("St Olaf's Church", "tll_stolav", "St Olafs Church Tallinn"),
+        S("Kadriorg Palace", "tll_kadriorg", "Kadriorg Palace Tallinn"),
+        S("Telliskivi Creative City", "tll_telliskivi", "Telliskivi Creative City Tallinn"),
+        S("Fotografiska Tallinn", "tll_fotografiska", "Fotografiska Tallinn"),
+        S("Iglupark Sauna", "tll_iglupark", "Iglupark Tallinn"),
+      ] },
+      sections: [
+        { title: "Stay", icon: "🏨", cards: [
+          { kind: "stay", name: "Nordic Hotel Forum", blurb: "Polished 4.5-star across the street from the Old Town gates, with a top-floor pool and sauna after a day of walking.", tags: ["★ top pick", "~$138/nt"], url: "https://www.booking.com/searchresults.html?ss=Nordic+Hotel+Forum+Tallinn&checkin=2026-09-06&checkout=2026-09-08&group_adults=3" },
+          { kind: "stay", name: "Palace Hotel Tallinn", blurb: "1930s landmark on Freedom Square folded into Radisson Individuals — old bones, updated rooms, 3 minutes to Old Town.", tags: ["~$90–190/nt", "value"], url: "https://www.booking.com/hotel/ee/palace-tallinn.html" },
+          { kind: "stay", name: "Hotel Telegraaf", blurb: "Five-star in a 19th-century telegraph building, widely the nicest hotel inside the walls — the splurge call.", tags: ["splurge", "Old Town"], url: "https://www.booking.com/searchresults.html?ss=Hotel+Telegraaf+Tallinn&checkin=2026-09-06&checkout=2026-09-08&group_adults=3" },
+          { kind: "stay", name: "Nunne Boutique Hotel", blurb: "74 rooms built into the medieval city wall itself — modern interiors, best value of the inside-the-walls options.", tags: ["boutique"], url: "https://www.booking.com/searchresults.html?ss=Nunne+Boutique+Hotel+Tallinn&checkin=2026-09-06&checkout=2026-09-08&group_adults=3" },
+        ] },
+        { title: "Do", icon: "🗺️", cards: [
+          { kind: "sight", name: "Old Town + Toompea Hill", blurb: "Climb to the Kohtuotsa and Patkuli platforms for the classic red-roof panoramas — do it on arrival afternoon.", tags: ["★ must", "free"], url: "https://www.visittallinn.ee/eng" },
+          { kind: "sight", name: "Seaplane Harbour", blurb: "Maritime museum in vast concrete hangars where you climb down inside a 1930s submarine — best indoor thing in town.", tags: ["~€22", "2 hrs"], url: "https://meremuuseum.ee/lennusadam/en/visitor-information/tickets/" },
+          { kind: "sight", name: "Kalma Saun", blurb: "1928 public sauna in Kalamaja — wood-fired stove, steam room, cold plunge, birch whisks; rugged and completely local.", tags: ["★ do it", "€12–18"], url: "https://www.kalmasaun.ee/eng-ajalooga-koht/" },
+          { kind: "sight", name: "Iglupark Igloo Saunas", blurb: "Glass-fronted igloo saunas on the Noblessner waterfront — sweat over the bay, then walk straight into the Baltic.", tags: ["book ahead", "private"], url: "https://iglupark.com/en/" },
+          { kind: "sight", name: "Telliskivi Creative City", blurb: "Old railway workshops turned creative quarter — street art, taprooms and live music, 15 minutes clear of the stag crowds.", tags: ["free", "evening"], url: "https://telliskivi.cc/en/" },
+          { kind: "sight", name: "Fotografiska Tallinn", blurb: "Rotating contemporary photography plus a 6th-floor bar with the best panorama of Old Town and Kalamaja.", tags: ["rooftop"], url: "https://tallinn.fotografiska.com/en/restaurants/fotografiska-restaurant" },
+        ] },
+        { title: "Eat", icon: "🍽️", cards: [
+          { kind: "coffee", name: "Fika", blurb: "Proper barista coffee and flaky almond croissants at the entrance to Telliskivi — the grab-and-go on departure morning.", tags: ["coffee", "~€5–10"], query: "Fika Telliskivi Tallinn" },
+          { kind: "eat", name: "F-Hoone", blurb: "Cavernous century-old factory in Telliskivi doing all-day breakfast — order the Kalamaja plate or the oven omelette.", tags: ["breakfast", "~€10–18"], url: "https://www.fhoone.ee/en/" },
+          { kind: "eat", name: "Rataskaevu 16", blurb: "The most-recommended mid-range room in Old Town — elk fillet, free chocolate cake, and it books out days ahead.", tags: ["reserve now", "~€20–35"], url: "https://www.rataskaevu16.ee/" },
+          { kind: "eat", name: "Fotografiska Restaurant", blurb: "Four straight Michelin Green Stars for zero-waste cooking, sixth floor, best view in the city — your one nice dinner.", tags: ["★ dinner", "book ahead"], url: "https://guide.michelin.com/dk/en/harju/tallinn/restaurant/fotografiska-1199007" },
+          { kind: "eat", name: "Olde Hansa", blurb: "Full medieval theatre — candlelight, costumed staff, bear and elk, honey beer in clay mugs; a laugh, and better than it needs to be.", tags: ["fun", "~€35–55"], query: "Olde Hansa Tallinn" },
+        ] },
+        { title: "Drink", icon: "🍻", cards: [
+          { kind: "drink", name: "Pudel", blurb: "Telliskivi craft beer bar with ten taps and 200+ rare bottles that turns into music and dancing later — best first stop.", tags: ["★ first stop", "~€6–9"], query: "Pudel Baar Telliskivi Tallinn" },
+          { kind: "drink", name: "Põhjala Tap Room", blurb: "24 taps of Estonia's flagship brewery plus real Texas barbecue, in an old submarine factory two minutes from Iglupark.", tags: ["beer + BBQ", "~€6–10"], url: "https://www.pohjalabeer.com/visit/pohjala-tap-room" },
+          { kind: "drink", name: "Sigmund Freud Bar", blurb: "Tallinn's best cocktail room, in a 15th-century building with exposed frescoes and 25+ signature drinks.", tags: ["cocktails", "~€12–16"], url: "https://sigmundfreud.bar/" },
+          { kind: "drink", name: "Sveta Baar", blurb: "The city's most interesting live-music venue in Telliskivi — clubs may be dark Sun–Tue, so check what's booked here.", tags: ["live music", "€5–10"], query: "Sveta Baar Telliskivi Tallinn" },
+        ] },
+      ],
+    },
+
     // ===================================================== STOCKHOLM
     {
       id: "stockholm", flag: "🇸🇪", name: "Stockholm", country: "Sweden",
-      code: "STO", dates: "Sep 9–11", nights: 2, accent: "#d4a13a",
+      code: "STO", dates: "Sep 9–10", nights: 1, accent: "#d4a13a",
       currency: "kr (SEK) · kr10 ≈ $1",
-      blurb: "Arrive on the overnight ferry. Old-town alleys, a raised 17th-century warship, clifftop sunsets and a floating sauna on the lake.",
+      blurb: "The ferry docks around 10am, so Wednesday is a half day and Thursday runs until the evening flight out of Arlanda. Vasa at opening is the one thing not to cut.",
       map: { stops: [
         S("Gamla Stan (Old Town)", "sto_gamlastan", "Gamla Stan Stockholm"),
         S("Vasa Museum", "sto_vasa", "Vasa Museum Stockholm"),
@@ -148,9 +198,9 @@ window.TRIP = {
     // ===================================================== COPENHAGEN
     {
       id: "copenhagen", flag: "🇩🇰", name: "Copenhagen", country: "Denmark",
-      code: "CPH", dates: "Sep 11–12", nights: 1, accent: "#c8453b",
+      code: "CPH", dates: "Sep 10–12", nights: 2, accent: "#c8453b",
       currency: "kr (DKK) · kr10 ≈ $1.50",
-      blurb: "One Friday night, one Saturday day. Go hard in the Meatpacking District (open till 5am Fri/Sat), then the harbour-and-canals loop before the night flight to Málaga.",
+      blurb: "Land Thursday night, then two full days — the extra day splits the old cramped loop in half. Friday goes hard in the Meatpacking District (open till 5am), Saturday is harbour and canals before the night flight to Málaga.",
       map: { stops: [
         S("Nyhavn", "cph_nyhavn", "Nyhavn Copenhagen"),
         S("Kødbyen (Meatpacking)", "cph_kodbyen", "Kødbyen Copenhagen"),
@@ -191,79 +241,175 @@ window.TRIP = {
 
     // ===================================================== MÁLAGA
     {
-      id: "malaga", flag: "🇪🇸", name: "Málaga", country: "Spain",
-      code: "AGP", dates: "Sep 13", nights: 1, accent: "#e08a2b",
+      id: "malaga", flag: "🇪🇸", name: "Málaga + Granada", country: "Spain",
+      code: "AGP", dates: "Sep 12–14", nights: 2, accent: "#e08a2b",
       currency: "€ euro · €1 ≈ $1.14",
-      blurb: "Night flight in, late tapas and a rooftop. Sunday: a compact old-town loop — Moorish Alcazaba, Roman theatre, Picasso — then grab the rental car west toward Gibraltar.",
+      blurb: "Land near midnight and crash at an airport hotel. Sunday is the payoff: grab the rental car and drive to Granada for the Alhambra, back to the same hotel, then south to Tarifa on Monday. Alhambra tickets are the one booking that can't be fixed late.",
       map: { stops: [
-        S("Alcazaba", "mal_alcazaba", "Alcazaba Málaga"),
-        S("Teatro Romano", "mal_teatro", "Teatro Romano Málaga"),
-        S("Castillo de Gibralfaro", "mal_gibralfaro", "Castillo de Gibralfaro Málaga"),
+        S("Málaga Airport (base)", "agp_airport", "Málaga Airport"),
+        S("Alhambra, Granada", "gra_alhambra", "Alhambra Granada"),
+        S("Mirador de San Nicolás", "gra_sannicolas", "Mirador de San Nicolas Granada"),
+        S("Albaicín", "gra_albaicin", "Albaicin Granada"),
+        S("Alcazaba (Málaga)", "mal_alcazaba", "Alcazaba Málaga"),
         S("Museo Picasso", "mal_picasso", "Museo Picasso Málaga"),
         S("Málaga Cathedral", "mal_cathedral", "Catedral de Málaga"),
-        S("Calle Larios", "mal_larios", "Calle Marqués de Larios Málaga"),
-        S("Muelle Uno", "mal_muelle", "Muelle Uno Málaga"),
+      ] },
+      sections: [
+        { title: "Stay — airport", icon: "🏨", cards: [
+          { kind: "stay", name: "Holiday Inn Express Málaga Airport", blurb: "Closest bed to the terminal at 1 km, 24/7 desk, and reception reimburses your airport bus ticket.", tags: ["★ top pick", "24h desk", "1 km"], url: "https://www.booking.com/hotel/es/holiday-inn-express-malaga.html?checkin=2026-09-12&checkout=2026-09-14&group_adults=3" },
+          { kind: "stay", name: "Hotel Málaga Nostrum Airport", blurb: "Five minutes out, recently refurbished, rooftop pool and a real restaurant — the pleasant option for the Granada night.", tags: ["24h desk", "parking €5/night"], url: "https://www.booking.com/hotel/es/ma-laga-nostrum.en-gb.html?checkin=2026-09-12&checkout=2026-09-14&group_adults=3" },
+          { kind: "stay", name: "Travelodge Málaga Airport", blurb: "Two km out with a 24-hour reception, bar and restaurant, and consistently the cheapest credible airport box.", tags: ["24h desk", "cheapest"], url: "https://www.booking.com/hotel/es/travelodge-malaga-airport.html?checkin=2026-09-12&checkout=2026-09-14&group_adults=3" },
+          { kind: "stay", name: "Hotel Zen Airport (Torremolinos)", blurb: "Its free shuttle stops at 23:50 and can't be pre-booked, so a 1am landing means taxiing in anyway — only worth it on price.", tags: ["shuttle ends 23:50", "taxi anyway"], url: "https://www.hotelzen.es/en/shuttle.html" },
+        ] },
+        { title: "Rental car", icon: "🚗", cards: [
+          { kind: "sight", name: "Pick up Sunday morning, not at 1am", blurb: "Skip the arrival-night paperwork — every AGP desk is open Sunday morning and you drive straight out toward Granada.", tags: ["★ top pick", "T2 & T3 arrivals"], query: "Malaga Airport AGP car rental" },
+          { kind: "sight", name: "One-way AGP → Seville drop-off", blurb: "It's a one-way rental with a relocation fee, so get the number written into the quote, not sprung at the Seville counter.", tags: ["one-way fee", "compare 2–3 firms"], query: "Malaga Airport AGP car rental desks" },
+          { kind: "sight", name: "International Driving Permit — required", blurb: "Spain wants an IDP carried alongside your US licence and issued 21,606 fines in 2024 for invalid licences; AAA, ~$20, before you fly.", tags: ["★ must", "~$20", "get it in the US"], url: "https://www.caserexpatinsurance.com/blog-typical-non-spanish/renting-a-car-in-spain-with-a-us-license" },
+        ] },
+        { title: "Granada — Sun 9/13", icon: "🏔️", cards: [
+          { kind: "sight", name: "Alhambra — book tickets NOW", blurb: "Sells out 2–3 months ahead and the Nasrid Palaces slot is a hard timed window you forfeit if you're late — buy the second Sept 13 opens.", tags: ["★ must", "€22.27", "nominative"], url: "https://tickets.alhambra-patronato.es/en/producto/alhambra-general/" },
+          { kind: "sight", name: "Alhambra car park", blurb: "About 500 guarded outdoor spaces at the complex itself — take the Serrallo tunnel, exit 5A, and park once.", tags: ["€3.17/hour", "24h guarded"], query: "Parking Alhambra Granada" },
+          { kind: "sight", name: "Albaicín + Mirador de San Nicolás", blurb: "White lanes climbing the hill opposite, topped by the classic Alhambra-against-the-Sierra-Nevada view at sunset.", tags: ["free", "late afternoon"], query: "Mirador de San Nicolas Granada" },
+          { kind: "sight", name: "Don't drive into the Albaicín", blurb: "The historic core is a camera-enforced restricted zone and your nav app will happily route you into a fine.", tags: ["fines", "walk or taxi"], query: "San Cristobal parking Albaicin Granada" },
+        ] },
+        { title: "Granada eat & drink", icon: "🍷", cards: [
+          { kind: "eat", name: "Bodegas Castañeda", blurb: "The one every local names — hanging jamón, barrels, packed standing bar, and free tapas only if you stand at it.", tags: ["★ top pick", "free tapas"], query: "Bodegas Castaneda Granada" },
+          { kind: "eat", name: "Bar Los Diamantes", blurb: "Open since 1942 and built on fried fish — order a drink, pescaíto frito lands in front of you.", tags: ["free tapas", "since 1942"], query: "Bar Los Diamantes Granada" },
+          { kind: "drink", name: "Taberna La Tana", blurb: "Tiny serious wine bar from Bourdain's Granada episode — skip the menu and let them pour you something local.", tags: ["wine", "calmer"], query: "Taberna La Tana Granada" },
+          { kind: "eat", name: "Bar Poë", blurb: "Cult free-tapas stop with a deliberately un-Spanish list: Brazilian and Portuguese plates, beef stews, chicken curry.", tags: ["free tapas", "breaks the pattern"], query: "Bar Poe Granada" },
+        ] },
+        { title: "Spare hour in Málaga", icon: "🗺️", cards: [
+          { kind: "sight", name: "Alcazaba", blurb: "11th-century Moorish hilltop fortress-palace of horseshoe arches and sea views — the best single sight in the city.", tags: ["★ top pick", "~€3.50", "~1 hour"], query: "Alcazaba Malaga" },
+          { kind: "sight", name: "Teatro Romano", blurb: "A 1st-century-BC Roman theatre at the fortress's foot — free, two minutes, and closed Mondays so just look from outside.", tags: ["free", "closed Mondays"], query: "Teatro Romano Malaga" },
+          { kind: "drink", name: "Antigua Casa de Guardia", blurb: "The city's oldest bar, 1840, standing-only, sweet Málaga wine from the barrel and your tab chalked on the wood.", tags: ["since 1840", "standing only"], query: "Antigua Casa de Guardia Malaga" },
+        ] },
+      ],
+    },
+
+    // ===================================================== TARIFA
+    {
+      id: "tarifa", flag: "🏄", name: "Tarifa", country: "Spain",
+      code: "TAR", dates: "Sep 14–17", nights: 3, accent: "#3f8e76",
+      currency: "€ euro · €1 ≈ $1.14",
+      blurb: "Windswept kitesurf town at the tip of Spain where the Atlantic meets the Med — the base for Tangier and Cádiz. Three continuous nights booked, so the car and the big bags stay put while you cross to Morocco.",
+      map: { stops: [
+        S("Tarifa old town", "tar_oldtown", "Tarifa Cádiz Spain"),
+        S("Castillo de Guzmán el Bueno", "tar_castillo", "Castillo de Guzman el Bueno Tarifa"),
+        S("Punta de Tarifa / Isla de las Palomas", "tar_punta", "Isla de las Palomas Tarifa"),
+        S("Playa de Los Lances", "tar_loslances", "Playa de Los Lances Tarifa"),
+        S("Playa de Bolonia", "tar_bolonia", "Playa de Bolonia Tarifa"),
+        S("Baelo Claudia", "tar_baelo", "Baelo Claudia Tarifa"),
+        S("Tarifa ferry terminal", "tar_ferry", "Estación Marítima Tarifa"),
+        S("Cádiz old town", "cad_oldtown", "Cádiz old town Spain"),
       ] },
       sections: [
         { title: "Stay", icon: "🏨", cards: [
-          { kind: "stay", name: "Hotel Catalonia Molina Lario", blurb: "Reliable 4-star steps from the cathedral, rooftop pool + bar, books triple rooms. Best no-fuss central pick.", tags: ["★ pick", "hotel"], url: "https://www.booking.com/searchresults.html?ss=Catalonia+Molina+Lario+Malaga&checkin=2026-09-12&checkout=2026-09-13&group_adults=3&no_rooms=1" },
-          { kind: "stay", name: "Only YOU Hotel Málaga", blurb: "Design-forward, buzzy rooftop bar with sea views, 10 min to the old town. Trendiest base.", tags: ["rooftop"], url: "https://www.booking.com/searchresults.html?ss=Only+YOU+Hotel+Malaga&checkin=2026-09-12&checkout=2026-09-13&group_adults=3&no_rooms=1" },
-          { kind: "stay", name: "Duplex in the center + parking", blurb: "3BR Guest Favorite ★4.94 with private parking (handy with the rental). Cheapest central pick.", tags: ["airbnb", "~$84/guy"], url: "https://www.airbnb.com/rooms/1319468407938939717?check_in=2026-09-12&check_out=2026-09-13&adults=3" },
+          { kind: "stay", name: "Airbnb — old town (the pick)", blurb: "Book all 3 nights Sept 14–17 so the car and luggage sit tight during Tangier; inside the walls means every bar and the ferry are a walk.", tags: ["★ must", "book early"], url: "https://www.airbnb.com/s/Tarifa--Spain/homes?checkin=2026-09-14&checkout=2026-09-17&adults=3&min_bedrooms=2" },
+          { kind: "stay", name: "Hotel Misiana", blurb: "Central boutique with a buzzy cocktail bar downstairs — the night starts under your room and you walk home.", tags: ["old town", "€120–180"], url: "https://www.misiana.com" },
+          { kind: "stay", name: "Posada La Sacristía", blurb: "17th-century townhouse with beams, an art-lounge bar and a sauna, 200m from the ferry — perfect for Tuesday's early boat.", tags: ["character", "€130–190"], url: "https://www.lasacristia.net" },
+          { kind: "stay", name: "Kook Hotel", blurb: "Fourteen design rooms in the lanes with a rooftop terrace looking straight across at Africa at sunset.", tags: ["rooftop", "€120–170"], url: "https://www.kookhotel.com" },
         ] },
         { title: "Do", icon: "🗺️", cards: [
-          { kind: "sight", name: "Alcazaba", blurb: "Superb 11th-century Moorish hilltop fortress-palace — arches, courtyards, sea views. The signature sight (free Sun from 2pm).", tags: ["★ must", "~€3.50"], query: "Alcazaba Málaga" },
-          { kind: "sight", name: "Castillo de Gibralfaro", blurb: "Hilltop castle above the Alcazaba, best panorama in Málaga. Steep 20-min walk up.", tags: ["views"], query: "Castillo de Gibralfaro Málaga" },
-          { kind: "sight", name: "Teatro Romano", blurb: "1st-century-BC Roman theatre at the foot of the Alcazaba — the city's oldest monument. Free.", tags: ["free"], query: "Teatro Romano Málaga" },
-          { kind: "sight", name: "Museo Picasso Málaga", blurb: "The serious Picasso collection in a Renaissance palace. Open Sunday mornings.", tags: ["~€12"], query: "Museo Picasso Málaga" },
-          { kind: "sight", name: "Cathedral 'La Manquita'", blurb: "Grand Renaissance-Baroque cathedral, famously one-armed. Sunday interior is afternoon-only.", tags: ["facade"], query: "Catedral de Málaga" },
+          { kind: "sight", name: "Punta de Tarifa / Isla de las Palomas", blurb: "Walk the causeway to the southernmost tip of mainland Europe — Atlantic on one side, Med on the other, Africa 14 km off. Do it at sunset.", tags: ["★ must", "free"], url: "https://anywhereweroam.com/things-to-do-in-tarifa-spain/" },
+          { kind: "sight", name: "Castillo de Guzmán el Bueno", blurb: "Ramparts of a 960 AD fortress with the best view in town — old town one way, Morocco the other. Forty-five minutes, tops.", tags: ["quick"], url: "https://www.andalucia.com/tarifa/castle-guzman-bueno.htm" },
+          { kind: "sight", name: "Playa de Bolonia + Baelo Claudia", blurb: "White sand, a huge climbable dune, and a near-complete Roman town with a garum factory sitting right on the beach. Best use of Wednesday.", tags: ["★ top pick", "20 min drive"], url: "https://www.tripadvisor.com/Attraction_Review-g315918-d1754746-Reviews-Playa_de_Bolonia-Tarifa_Costa_de_la_Luz_Andalucia.html" },
+          { kind: "sight", name: "Whale watching with FIRMM", blurb: "Non-profit research trips into the Strait with a biologist aboard and a 95%+ sighting rate — dolphins and pilot whales near-certain, orcas gone by September.", tags: ["2–3 hrs", "€30"], url: "https://www.firmm.org/en/whale-watching" },
+          { kind: "sight", name: "Kitesurf lesson at Valdevaqueros", blurb: "Windiest town in Europe, 30+ schools, and a half-day group lesson where all three of you will be spectacularly bad at it.", tags: ["€70–90", "book ahead"], url: "https://alexpastorkiteclub.com/kitesurf-lessons-tarifa/" },
+          { kind: "sight", name: "Old town + Puerta de Jerez", blurb: "Cobbled lanes, whitewash and surf shops through the only surviving 13th-century gate — an hour, best in the early evening.", tags: ["free"], url: "https://alisononfoot.com/the-best-things-to-do-in-tarifa/" },
         ] },
-        { title: "Eat & Drink", icon: "🍷", cards: [
-          { kind: "eat", name: "Casa Aranda", blurb: "Churros institution since 1932 down an alley off Calle Larios. The classic Sunday morning move.", tags: ["breakfast", "churros"], query: "Casa Aranda Málaga" },
-          { kind: "drink", name: "Bar La Tranca", blurb: "Rowdy, beloved local vermut bar — frozen beers, cheap tapas, open till 1am. The safe late bet.", tags: ["★ tapas/vermut"], query: "Bar La Tranca Málaga" },
-          { kind: "drink", name: "Bodega El Pimpi", blurb: "Málaga's most famous bodega — tiled rooms, wine barrels, terrace facing the Alcazaba.", tags: ["wine", "setting"], query: "El Pimpi Málaga" },
-          { kind: "drink", name: "La Terraza de la Alcazaba", blurb: "Rooftop cocktails facing the floodlit fortress, open till 3am Sat. The late-arrival move.", tags: ["rooftop", "till 3am"], query: "La Terraza de la Alcazaba Málaga" },
+        { title: "Eat", icon: "🍽️", cards: [
+          { kind: "coffee", name: "Café Azul", blurb: "Non-negotiable breakfast — vintage room, proper Italian coffee, fresh juices and the enormous crepes it's famous for. Go early, it's tiny.", tags: ["★ must", "€8–14"], url: "https://cafeazul-tarifa.com/" },
+          { kind: "eat", name: "Mesón El Picoteo", blurb: "What locals name when asked for the best in town: unfussy Andalusian seafood, and the tuna with tartar sauce reviewers won't shut up about.", tags: ["★ top pick", "€25–40"], url: "https://www.tripadvisor.com/Restaurant_Review-g315918-d2351451-Reviews-Meson_el_Picoteo-Tarifa_Costa_de_la_Luz_Andalucia.html" },
+          { kind: "eat", name: "Restaurante La Pescadería", blurb: "Shaded tables on the Alameda built around almadraba tuna from the Strait, fried fish and rice dishes. Order the tuna twice.", tags: ["seafood", "€30–45"], url: "https://www.tripadvisor.com/Restaurant_Review-g315918-d1576335-Reviews-Restaurante_La_Pescaderia-Tarifa_Costa_de_la_Luz_Andalucia.html" },
+          { kind: "eat", name: "Bar El Francés", blurb: "Tapas by the castle — pigs' cheeks in red wine, spicy bravas, generous and cheap. No reservations, so turn up by 20:30.", tags: ["tapas", "€15–25"], url: "https://www.minube.net/place/el-frances-bar--a749201" },
+          { kind: "eat", name: "Chiringuito Tangana", blurb: "Dune-side beach shack between Valdevaqueros and Punta Paloma doing tuna tartare and Asian salads far better than it needs to.", tags: ["beach lunch", "€18–30"], url: "https://www.guiarepsol.com/es/comer/nuestros-favoritos/chiringuitos-tarifa-cadiz/" },
+        ] },
+        { title: "Drink", icon: "🍻", cards: [
+          { kind: "drink", name: "Almedina Café Bar", blurb: "Built into the medieval walls — arched brick ceilings, good wine, and a weekly live flamenco night. Most memorable room in Tarifa.", tags: ["★ top pick", "€5–10"], url: "https://tarifa.costasur.com/sites/almedina/en/index.html" },
+          { kind: "drink", name: "Surf Bar Tomatito", blurb: "Where the night starts: loud, young, unpretentious, table football and cheap beers, alive from about 23:00.", tags: ["first stop", "€5–9"], url: "https://theculturetrip.com/europe/spain/articles/the-top-10-bars-in-tarifa-spain" },
+          { kind: "drink", name: "Tetería de Tarifa", blurb: "Open-air Moroccan lounge in the old quarter with cocktails at €4 before midnight — the obvious pre-game.", tags: ["€4 pre-midnight"], url: "https://www.andalucia.com/tarifa/nightlife.htm" },
+          { kind: "drink", name: "La Ruina", blurb: "The only year-round club inside the walls, built into a ruin, deep house until 04:30 on weekends. You end up here.", tags: ["late", "€8–12"], url: "https://www.andalucia.com/tarifa/nightlife.htm" },
+        ] },
+        { title: "Day trips", icon: "🚗", cards: [
+          { kind: "ferry", name: "Ferry to Tanger Ville", blurb: "One hour across the Strait on Baleària or AML, landing in Tangier city itself — not Tanger Med, 45 km out. ~€82 round trip, foot passengers only.", tags: ["★ must", "€82 return"], url: "https://www.balearia.com/en/routes-timetables/ferry-tarifa-tanger-ville" },
+          { kind: "sight", name: "Gibraltar — optional, Mon 9/14", blurb: "The land border was abolished 15 July 2026, fence and all; cable car is shut until 2027, so the ~2h Rock Tour minibus is the way up to the macaques and tunnels.", tags: ["45 min drive", "£30 reserve"], url: "https://gibraltarinfo.gi/nature-reserve/" },
+          { kind: "sight", name: "Cádiz — optional, Wed 9/16 or Thu 9/17", blurb: "Oldest city in Western Europe, salt-worn and ringed by Atlantic; do it Thursday en route to Seville — cathedral, Torre Tavira, market lunch, La Caleta.", tags: ["★ top pick", "1h15 drive"], url: "https://alisononfoot.com/the-best-things-to-do-in-cadiz/" },
+        ] },
+      ],
+    },
+
+    // ===================================================== TANGIER
+    {
+      id: "tangier", flag: "🇲🇦", name: "Tangier", country: "Morocco",
+      code: "TNG", dates: "Sep 15–16", nights: 1, accent: "#c96a2b",
+      currency: "MAD dirham · 10 MAD ≈ $1",
+      blurb: "One night in Africa, an hour from Spain. Medina alleys and Kasbah walls by day, mint tea on the cliff at Café Hafa at sunset — the Tangier of Bowles, Burroughs and Matisse, compressed into 24 hours.",
+      map: { stops: [
+        S("Tangier Medina", "tng_medina", "Tangier Medina"),
+        S("Kasbah", "tng_kasbah", "Kasbah Tangier"),
+        S("Grand Socco", "tng_grandsocco", "Grand Socco Tangier"),
+        S("Cap Spartel", "tng_capspartel", "Cap Spartel Tangier"),
+        S("Caves of Hercules", "tng_hercules", "Caves of Hercules Tangier"),
+      ] },
+      sections: [
+        { title: "Stay", icon: "🏨", cards: [
+          { kind: "stay", name: "Hotel Nord-Pinus Tanger", blurb: "Five rooms on the highest point of the Kasbah, Roman foundations below and the Strait in front — best fit for three.", tags: ["★ top pick", "book by email"], url: "https://www.nordpinustanger.com/" },
+          { kind: "stay", name: "La Tangerina", blurb: "Owner-run ten-room riad at the top of the medina, in-house hammam and a panoramic roof terrace.", tags: ["Kasbah", "riad"], url: "https://latangerina.com/" },
+          { kind: "stay", name: "Dar Nour", blurb: "Oldest guest house in Tangier, sea-facing in the Kasbah — take a suite plus a room, or ask for the whole house.", tags: ["Kasbah", "email direct"], url: "https://darnour.com/en/" },
+          { kind: "stay", name: "El Minzah Hotel", blurb: "Grand 1930s five-star with pool and hammam — the fallback with real availability if the riads refuse one night.", tags: ["$223/night", "backup"], url: "https://www.expedia.com/Tangier-Hotels-El-Minzah-Hotel.h11214.Hotel-Information" },
+        ] },
+        { title: "Do", icon: "🗺️", cards: [
+          { kind: "sight", name: "The Medina", blurb: "Yellow, pink and green lanes tangling between souks and mosques — just wander, and refuse every guide who offers.", tags: ["★ must", "free"], query: "Medina of Tangier" },
+          { kind: "sight", name: "Kasbah + Kasbah Museum", blurb: "Fortified quarter above the souks; the 17th-century Dar el Makhzen inside is a bonus, not a fixture — closing day is disputed and you arrive Tuesday.", tags: ["~20 MAD", "⚠️ check Tue"], query: "Kasbah Museum Tangier" },
+          { kind: "sight", name: "Petit Socco", blurb: "The café-ringed square Burroughs and Bowles knew — order mint tea, take an outside table, watch the city pass.", tags: ["★ must", "free to sit"], query: "Petit Socco Tangier" },
+          { kind: "sight", name: "Tangier American Legation Museum", blurb: "Oldest US diplomatic property on earth, with a Paul Bowles wing and blessed air conditioning at midday.", tags: ["50 MAD", "Mon–Fri 10–17"], url: "https://www.tripadvisor.com/Attraction_Review-g293737-d481062-Reviews-Tangier_American_Legation_Museum-Tangier_Tanger_Tetouan_Al_Hoceima.html" },
+          { kind: "sight", name: "Caves of Hercules → Cap Spartel", blurb: "Sea cave shaped like Africa, then walk 5 km up Robinson Plage to the lighthouse where two seas meet.", tags: ["★ must", "taxi 150–200 MAD"], url: "https://www.mytangier.com/hercules-caves" },
+        ] },
+        { title: "Eat", icon: "🍽️", cards: [
+          { kind: "eat", name: "El Morocco Club", blurb: "Kasbah townhouse doing refined Moroccan upstairs and a piano bar downstairs — eat and drink without leaving the building.", tags: ["★ top pick", "reserve ahead"], url: "https://www.tripadvisor.com/Restaurant_Review-g293737-d3773838-Reviews-El_Morocco_Club-Tangier_Tanger_Tetouan_Al_Hoceima.html" },
+          { kind: "eat", name: "Saveur de Poisson", blurb: "No menu, no choice — shared tables and a fixed seafood parade Bourdain filmed. Cash only, no booze.", tags: ["250 MAD fixed", "cash only"], url: "https://www.tripadvisor.com/Restaurant_Review-g293737-d1763129-Reviews-Le_Saveur_du_Poisson-Tangier_Tanger_Tetouan_Al_Hoceima.html" },
+          { kind: "eat", name: "Le Nabab", blurb: "Best traditional dinner in the medina — black arched walls, silk hangings, and reportedly the best harira in Morocco.", tags: ["~150 MAD", "medina"], url: "https://www.tripadvisor.com/Restaurant_Review-g293737-d1762912-Reviews-Le_Nabab-Tangier_Tanger_Tetouan_Al_Hoceima.html" },
+          { kind: "eat", name: "Darna", blurb: "Women's cooperative near Cinema Rif, one fixed menu a day under a fig tree — best value proper meal in the medina.", tags: ["70 MAD", "lunch"], query: "Darna Association Tangier" },
+        ] },
+        { title: "Drink & cafés", icon: "🍵", cards: [
+          { kind: "coffee", name: "Café Hafa", blurb: "Cliff terraces since 1921, Tarifa visible across the water — the Stones and Bowles sat here. Go at sunset. Tea only.", tags: ["★ must", "dry", "12–15 MAD"], url: "https://en.wikipedia.org/wiki/Caf%C3%A9_Hafa" },
+          { kind: "coffee", name: "Café Baba", blurb: "Unreconstructed 1943 Kasbah room, Keith Richards on the wall, heavy kif smoke — thirty minutes, and count your change.", tags: ["dry", "~20 MAD"], url: "https://www.tripadvisor.com/Restaurant_Review-g293737-d4579208-Reviews-Cafe_Baba-Tangier_Tanger_Tetouan_Al_Hoceima.html" },
+          { kind: "drink", name: "Nord-Pinus rooftop bar", blurb: "Best-sited drink in the city, on top of the Kasbah over the town lights and the Strait — tiny, so call ahead.", tags: ["alcohol", "from 17:00"], url: "https://www.nordpinustanger.com/bar/" },
+          { kind: "drink", name: "Number One", blurb: "Small unpretentious Ville Nouvelle bar where you sit at the counter and conversation finds you — character over polish.", tags: ["alcohol", "local"], url: "https://ozzyhopper.com/foodiestangier/drinks-and-nightlife-in-tangier" },
+        ] },
+        { title: "Ferry & border", icon: "⛴️", cards: [
+          { kind: "ferry", name: "Book Tanger VILLE — not Tanger Med", blurb: "Tarifa lands you in the city, 15 minutes from the medina; Tanger Med is 45 km out and the classic booking mistake.", tags: ["★ must", "~1 hour", "~€82 return"], url: "https://www.balearia.com/en/routes-timetables/ferry-tarifa-tanger-ville" },
+          { kind: "ferry", name: "Morocco is 1 hour BEHIND Spain", blurb: "On Sept 15–16 Tangier is UTC+1 — but Morocco goes permanent GMT on 20 Sept, so any later article will wrongly say two.", tags: ["★ must", "verify live clock"], url: "https://www.timeanddate.com/news/time/morocco-abolish-dst.html" },
+          { kind: "ferry", name: "Which clock is your return ticket on?", blurb: "Sailings are quoted in the departure port's local time, but no operator states it in writing — ask at the desk, arrive an hour early.", tags: ["build buffer"], url: "https://www.ferryhopper.com/en/ferry-routes/direct/ferry-tarifa-tanger" },
+          { kind: "ferry", name: "Passports, forms and the police desk", blurb: "White form out, yellow form back; board and queue at the onboard police desk immediately or lose an hour docked.", tags: ["no visa <90 days", "6 months validity"], url: "https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Morocco.html" },
+          { kind: "ferry", name: "Leave the rental car in Spain", blurb: "Spanish rental agreements prohibit taking the car to Morocco — cross on foot with an overnight bag, which the medina demands anyway.", tags: ["foot passengers"], url: "https://moroccobeautyspots.com/blog/rental-car-spain-to-morocco" },
         ] },
       ],
     },
 
     // ===================================================== GIBRALTAR + TANGIER
     {
-      id: "gibraltar", flag: "🇬🇮", name: "Gibraltar & Tangier", country: "Tarifa base",
-      code: "TAR", dates: "Sep 13–15", nights: 2, accent: "#3f8e76",
-      currency: "£ Gibraltar · € Tarifa · MAD Tangier",
-      blurb: "Base in windswept Tarifa. Half a day on the Rock (apes, caves, two continents in view), then a one-hour fast ferry to Tangier for a full day in the medina.",
+      id: "gibraltar", flag: "🇬🇮", name: "Gibraltar", country: "optional detour",
+      code: "GIB", dates: "Sep 14 · optional", nights: 0, accent: "#8a6f4a",
+      currency: "£ Gibraltar pound / sterling",
+      blurb: "An optional half day off the Málaga → Tarifa drive. The land border was abolished 15 July 2026 — fence down, no routine checks — so the old 30–90 minute queue is gone. The cable car is shut until 2027, so the way up is the ~2h Rock Tour minibus.",
       map: { stops: [
-        S("Tarifa old town", "tar_oldtown", "Tarifa Cádiz Spain"),
-        S("Tarifa ferry terminal", "tar_ferry", "Estación Marítima Tarifa"),
         S("Gibraltar — Upper Rock", "gib_rock", "Upper Rock Nature Reserve Gibraltar"),
         S("St Michael's Cave", "gib_stmichael", "St Michael's Cave Gibraltar"),
         S("Europa Point", "gib_europa", "Europa Point Gibraltar"),
-        S("Tangier Medina", "tng_medina", "Tangier Medina"),
-        S("Tangier Kasbah", "tng_kasbah", "Kasbah Tangier"),
-        S("Cap Spartel", "tng_capspartel", "Cap Spartel Tangier"),
-        S("Caves of Hercules", "tng_hercules", "Caves of Hercules Tangier"),
       ] },
       sections: [
-        { title: "Stay (Tarifa)", icon: "🏨", cards: [
-          { kind: "stay", name: "Viento del Sur", blurb: "3BR Guest Favorite ★4.91 — best value-meets-rating in the old town. 2 nights.", tags: ["★ pick", "~$118/guy"], url: "https://www.airbnb.com/rooms/621319416058275166?check_in=2026-09-13&check_out=2026-09-15&adults=3" },
-          { kind: "stay", name: "Casa Teté (4BR + parking)", blurb: "4BR / 8 beds, everyone gets a room, free parking for the rental. The space pick.", tags: ["4BR", "~$250/guy"], url: "https://www.airbnb.com/rooms/573301384411273327?check_in=2026-09-13&check_out=2026-09-15&adults=3" },
-          { kind: "stay", name: "Hotel Misiana", blurb: "Central boutique in the old town with a buzzy ground-floor cocktail bar. Middle of the action.", tags: ["hotel"], url: "https://www.misiana.com" },
+        { title: "The Rock", icon: "🦧", cards: [
+          { kind: "sight", name: "Upper Rock Nature Reserve", blurb: "One £30 ticket covers the caves, tunnels, Skywalk and the apes — realistically 3–4 hours up top.", tags: ["★ must", "£30"], url: "https://www.naturereserve.gi" },
+          { kind: "sight", name: "Rock Tour minibus", blurb: "The way up now that the cable car is shut until 2027 — about two hours, private cars aren't allowed into the reserve.", tags: ["~2 hrs", "book ahead"], url: "https://gibraltarinfo.gi/nature-reserve/" },
+          { kind: "sight", name: "Barbary Macaques (Apes' Den)", blurb: "200+ wild monkeys, the only wild primates in Europe — secure bags, sunglasses and food before you get close.", tags: ["apes"], query: "Apes Den Gibraltar" },
+          { kind: "sight", name: "St Michael's Cave", blurb: "Dramatic illuminated cavern used as an auditorium, a 20-minute walk down from the top.", tags: ["cave"], query: "St Michael's Cave Gibraltar" },
+          { kind: "sight", name: "Skywalk + Europa Point", blurb: "Glass platform out over the eastern face; Europa Point at the southern tip looks straight across to Morocco.", tags: ["views"], query: "Skywalk Gibraltar" },
         ] },
-        { title: "Gibraltar — the Rock", icon: "🦧", cards: [
-          { kind: "sight", name: "Upper Rock Nature Reserve", blurb: "Cable car or minibus up; one £30 ticket covers the caves, tunnels, Skywalk and apes. Bring passports for the land border.", tags: ["★", "half day"], url: "https://www.naturereserve.gi" },
-          { kind: "sight", name: "Barbary Macaques (Apes' Den)", blurb: "200+ wild monkeys — the only wild primates in Europe. Secure bags, sunglasses and food.", tags: ["apes"], query: "Apes Den Gibraltar" },
-          { kind: "sight", name: "St Michael's Cave", blurb: "Dramatic illuminated cavern used as an auditorium, a 20-min walk down from the top.", tags: ["cave"], query: "St Michael's Cave Gibraltar" },
-          { kind: "sight", name: "Skywalk + Europa Point", blurb: "Glass platform over the eastern face; Europa Point at the southern tip sees across to Morocco.", tags: ["views"], query: "Skywalk Gibraltar" },
-        ] },
-        { title: "Tangier — day trip", icon: "🇲🇦", cards: [
-          { kind: "ferry", name: "Tarifa → Tangier fast ferry", blurb: "~1 hour to Tangier Ville port, ~10 crossings/day, from ~€40 each way. Catch the ~9am out, late-afternoon back. Passport stamped onboard.", tags: ["★ book ahead"], url: "https://www.balearia.com/en/routes-timetables/ferry-tarifa-tanger-ville" },
-          { kind: "sight", name: "The Medina + Kasbah", blurb: "Walled old town of tangled lanes and tea houses; the hilltop Kasbah has the best views and the museum.", tags: ["★ medina"], query: "Tangier Medina" },
-          { kind: "sight", name: "Cap Spartel + Caves of Hercules", blurb: "Northwest tip of Africa where the Atlantic meets the Med; the sea cave's opening is shaped like the map of Africa.", tags: ["~25 min west"], query: "Cap Spartel Tangier" },
-          { kind: "sight", name: "Café Hafa", blurb: "Clifftop terraces pouring mint tea since 1921 (the Stones and Hendrix drank here). The classic Tangier view.", tags: ["mint tea"], query: "Café Hafa Tangier" },
-        ] },
-        { title: "Tarifa food", icon: "🍽️", cards: [
-          { kind: "eat", name: "El Lola", blurb: "Lively old-town tapas with flamenco soul — the fun group dinner.", tags: ["tapas"], query: "El Lola Tarifa" },
-          { kind: "eat", name: "Mandrágora", blurb: "Andalusian-Moroccan cooking, intimate and well-rated — an on-theme bridge to Tangier.", tags: ["dinner"], query: "Mandrágora Tarifa" },
+        { title: "Before you go", icon: "⚠️", cards: [
+          { kind: "sight", name: "The border is gone — but bring passports", blurb: "The 15 July 2026 treaty removed the land frontier and the queue with it; it is days old, so carry passports and check live conditions.", tags: ["★ new", "15 Jul 2026"], url: "https://www.aljazeera.com/news/2026/7/15/gibraltar-border-controls-lifted-is-it-part-of-schengen-the-uk-or-both" },
+          { kind: "sight", name: "Check the rental agreement", blurb: "Some Spanish rental contracts still restrict taking the car into Gibraltar, treaty or not — if so, park in La Línea and walk across.", tags: ["car"], query: "La Línea de la Concepción parking Gibraltar border" },
+          { kind: "sight", name: "Gibraltar notes don't spend elsewhere", blurb: "It's sterling, but Gibraltar-issued notes are worthless the moment you leave — spend them or change them before you go.", tags: ["£ cash"], query: "Gibraltar currency" },
         ] },
       ],
     },
@@ -271,9 +417,9 @@ window.TRIP = {
     // ===================================================== SEVILLE
     {
       id: "seville", flag: "🇪🇸", name: "Seville", country: "Spain",
-      code: "SVQ", dates: "Sep 15–19", nights: 4, accent: "#cf5b27",
+      code: "SVQ", dates: "Sep 17–19", nights: 2, accent: "#cf5b27",
       currency: "€ euro · €1 ≈ $1.14",
-      blurb: "The Andalusia home base for four nights — the best tapas city in Spain, a jaw-dropping Mudéjar palace, flamenco in its birthplace, and day trips to the Alhambra and the Mezquita.",
+      blurb: "Two nights only, so it's tight — drive in Thursday and drop the car, Córdoba and the Mezquita on Friday, then Saturday morning before the train to Madrid. The Alcázar is the one thing not to miss.",
       map: { stops: [
         S("Real Alcázar", "sev_alcazar", "Real Alcázar de Sevilla"),
         S("Catedral + La Giralda", "sev_cathedral", "Catedral de Sevilla"),
@@ -285,8 +431,7 @@ window.TRIP = {
       ] },
       sections: [
         { title: "Book NOW", icon: "⭐", cards: [
-          { kind: "sight", name: "Alhambra — Nasrid Palaces (Granada)", blurb: "The single most important booking of the trip. Timed entry, sells out weeks ahead. Pick an early-afternoon slot.", tags: ["★ critical", "day trip 9/17"], url: "https://tickets.alhambra-patronato.es/en/" },
-          { kind: "sight", name: "Real Alcázar (Seville)", blurb: "Caps at 750/day and sells out days ahead. Book before you arrive.", tags: ["book ahead"], url: "https://www.alcazarsevilla.org/en/" },
+          { kind: "sight", name: "Real Alcázar (Seville)", blurb: "Caps at 750/day and sells out days ahead. With only two nights, book the Saturday first slot before you arrive.", tags: ["★ critical"], url: "https://www.alcazarsevilla.org/en/" },
           { kind: "sight", name: "Cathedral + Giralda", blurb: "Book online to skip the long line.", tags: ["book ahead"], url: "https://www.catedraldesevilla.es/" },
         ] },
         { title: "Stay", icon: "🏨", cards: [
@@ -301,9 +446,11 @@ window.TRIP = {
           { kind: "sight", name: "Setas de Sevilla", blurb: "Giant wooden 'mushrooms' with a rooftop walkway over the old town. Best at sunset.", tags: ["~€15"], query: "Setas de Sevilla" },
           { kind: "sight", name: "Barrio Santa Cruz + Triana", blurb: "Whitewashed old Jewish quarter, then cross the river to the flamenco-and-ceramics quarter for tapas.", tags: ["wander"], query: "Barrio Santa Cruz Sevilla" },
         ] },
-        { title: "Day trips", icon: "🚄", cards: [
-          { kind: "sight", name: "Granada — the Alhambra (9/17)", blurb: "~2.5h each way by AVANT/AVE or a guided tour. The Nasrid Palaces, Generalife gardens and the Albaicín view. Bring your passport.", tags: ["★ big day"], query: "Alhambra Granada" },
-          { kind: "sight", name: "Córdoba — the Mezquita (9/18)", blurb: "Effortless ~45-min AVE. A forest of red-and-white arches with a cathedral grown from its center. Book the first morning slot.", tags: ["easy + epic"], query: "Mezquita-Catedral de Córdoba" },
+        { title: "Getting in & out", icon: "🚄", cards: [
+          { kind: "sight", name: "Córdoba — the Mezquita (Fri 9/18)", blurb: "A forest of red-and-white arches with a cathedral grown from its centre — book the first morning slot.", tags: ["★ big day"], query: "Mezquita-Catedral de Córdoba" },
+          { kind: "sight", name: "Take the FAST Córdoba train", blurb: "AVE/Avant/Avlo/Ouigo run 40–45 min, but Media Distancia takes over 1h30 — the cheap headline fare is often the slow one.", tags: ["the trap", "~€7–15"], url: "https://www.renfe.com/es/en" },
+          { kind: "sight", name: "Drop the car at Santa Justa", blurb: "Hertz, Sixt and Europcar desks are at the station — do NOT drive into the old town, the restricted zones are camera-enforced.", tags: ["€200 fine", "Thu 9/17"], query: "Sevilla Santa Justa car rental return" },
+          { kind: "sight", name: "Train to Madrid (Sat 9/19)", blurb: "~2h30 on AVE/Ouigo/Iryo/Avlo, 20+ a day — go 10:00–12:00 so you get the Madrid afternoon, and book early for €7–15 over €60+.", tags: ["book ahead"], url: "https://www.renfe.com/es/en" },
         ] },
         { title: "Tapeo & flamenco", icon: "🍷", cards: [
           { kind: "eat", name: "Espacio Eslava", blurb: "The city's most-awarded tapas bar — honey-glazed ribs, egg-on-mushroom-cake. Arrive ~8:30pm, no bar bookings.", tags: ["★ tapas"], query: "Espacio Eslava Sevilla" },
