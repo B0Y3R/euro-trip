@@ -277,6 +277,15 @@
         if (!used[i] && l.iso === stay.fromIso) { used[i] = 1; wrap.appendChild(legNode(l)); }
       });
       wrap.appendChild(stayBlock(stay));
+      // Legs falling inside this stay's window - the Tangier round trip sits
+      // inside Tarifa's. Without this they miss every fromIso match and get
+      // swept into the trailing loop, rendering after the last stay.
+      TRIP.legs.forEach(function (l, i) {
+        if (!used[i] && l.iso > stay.fromIso && l.iso < stay.toIso) {
+          used[i] = 1;
+          wrap.appendChild(legNode(l));
+        }
+      });
     });
     TRIP.legs.forEach(function (l, i) { if (!used[i]) wrap.appendChild(legNode(l)); });
     return wrap;
