@@ -363,6 +363,15 @@
     hero.appendChild(el("p", "hero__currency", "💱 " + esc(city.currency)));
     app.appendChild(hero);
 
+    // Day-by-day for this stay. Cities with no stay (Gibraltar is a day trip,
+    // nights: 0) get no section rather than an empty one.
+    if (stayById(city.id)) {
+      var citySec = el("section", "section reveal");
+      citySec.appendChild(el("h2", "section__title", "📅 Your Days Here"));
+      citySec.appendChild(timelineSpine({ stayId: city.id }));
+      app.appendChild(citySec);
+    }
+
     // map
     var mapSec = el("section", "section reveal");
     mapSec.appendChild(el("h2", "section__title", "🗺️ The Map"));
