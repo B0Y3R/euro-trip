@@ -18,7 +18,7 @@ T.timeline.forEach(function (d, i) {
   check("timeline[" + i + "].sleep present", "sleep" in d, d.date);
 });
 
-check("legs has 11", T.legs.length === 11, "got " + T.legs.length);
+check("legs has 12", T.legs.length === 12, "got " + T.legs.length);
 T.legs.forEach(function (l, i) {
   check("legs[" + i + "].iso is ISO", ISO.test(l.iso || ""), String(l.iso));
 });
